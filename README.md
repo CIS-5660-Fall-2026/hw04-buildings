@@ -1,53 +1,65 @@
-# CIS 5660 HW04 Procedural Buildings
+# Procedural Timber Buildings
 
-## Project Overview
-In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
+A Houdini tool that builds old English half-timbered houses: white walls, dark wooden frames, upper floors that stick out over the street, tiled roofs, and brick chimneys. One HDA, two very different buildings, just by changing parameters.
 
-## Part 0: Setup and Planning 
-### SideFX Labs 
-If you didn't install SideFX Labs during lab 06, make sure you do so for this homework. You can do so at the “Labs/Packages” tab of the Houdini Launcher. Make sure that the version of Labs that you install is not newer than your overall Houdini install (e.g. if you have Houdini 21.544, don't install Labs 22.650). Use the Production version of Labs, not the Daily.
+<img width="640" alt="Tool demo" src="demo.gif">
 
-### Project Planning
-Before implementing any Houdini nodes or VEX code, take some time to look at different architectural styles (realistic or fictional). Decide on two different buildings that use the architectural style you chose, and add to this README concept art or photographs of your chosen buildings, citing your sources. You will be using the techniques you practiced in Lab 06 to procedurally generate buildings modeled after the ones you selected. Your buildings should be stylistically similar enough that your tool can be used to create either one by modifying its parameters.
+Full video: **[watch on YouTube](https://youtu.be/d1OYhexmujA)**
 
-Do make sure that what you choose is manageable given your knowledge Houdini and what is taught in the tutorial. Of course, you’re welcome to adapt the setup to support additional logic/features to match your style, and particularly complex additions could merit extra credit :) On the other hand, if you’re newer to Houdini and want to stick relatively close to the tutorial, that’s okay too. Just be sure to think through what changes your chosen buildings will require (additional assets? different placement logic?) before diving into the project so you don’t bite off more than you can chew.  
-Here are a few examples of possible building styles that could be a decent fit for inspiration:
-CIS 5660 HW03 Procedural Building 1 
-https://www.behance.net/gallery/23773965/ISOBuilding-concept-art 
+![Final render](render/street.png)
 
-https://www.artstation.com/artwork/m6xYy 
+## The two buildings I based it on
 
-## Part 1: Box Stacking HDA
-As you did in lab 06, follow the tutorial to make a simple HDA that stacks boxes on each other.  Important note about HDA creation:  
-Creating an HDA saves a .hda file at the location you specify with the definition of your HDA. Be sure to submit this .hda file along with your .hip file so we can see the contents of your tool.  
-Alternatively, when you save your HDA you can choose the “Embedded in HIP File” option (rather than specifying the path), and the hda definition will be automatically embedded in your hip file (and no additional files will be needed with submission).  
+| Wide, low country inn | Tall, narrow town house |
+|---|---|
+| <img width="400" alt="The Swan Hotel, Lavenham" src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Lavenham_-_Swan_Hotel.jpg"> | <img width="400" alt="The Feathers Hotel, Ludlow" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Feathers_Hotel_Ludlow.jpg/960px-Feathers_Hotel_Ludlow.jpg"> |
+| The Swan Hotel, Lavenham. Two floors, a long front, one overhanging upper floor. | The Feathers Hotel, Ludlow (the one on the right). Four floors, each one sticking out more than the last. |
 
-## Part 2: Add Details
-Next, Simon adds details to the boxes to create floors by refining the shape and adding details like windows, doors, and balconies.  
-Create your own models for windows, doors, and balconies based on your chosen style using Houdini. For each of the three types, create a Null “control” node with parameters that affect your window/door/balcony output (similar to how we made a control node for the jellyfish).  
-You should have parameters to drive the width and height of the doors, windows, and balconies, as well as at least one other parameter of your choosing on each one (ex: double vs single doors, windows with and without shutters, and type of balcony railing). Apart from that, you can go as simple or complex as you like!  
-Then follow Simon’s setup to integrate your windows, doors, and balconies into your buildings.  
+Photo credits: Swan Hotel by Oxyman (2008), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lavenham_-_Swan_Hotel.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). Feathers Hotel by Mick Knapton (2003), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Feathers_Hotel_Ludlow.jpg), [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
-## Part 3: Pillars and Border
-Continue following the tutorial to add pillars and borders to each floor. Depending on your chosen style, your building may not make use of pillars. In this case, still use the technique shown to add horizontally-instanced elements of some kind to your building.
+## How to try it
 
-## Part 4: Supports
-Continue following the tutorial to add supports to floors that overhang other floors.  
+1. Open `buildings.hipnc` (the HDA is embedded, nothing else to install).
+2. Go to `/obj/building` and click `timber_building1` once.
+3. Gear icon → **Legacy Presets** → **Swan Inn** or **Feathers Town House**. Then play with the sliders.
+4. Want colors? Go to `/stage`. Want the final picture? Click `karma_render` → **Render to MPlay**.
 
-## Part 5: Feature of your choice
-Throughout the tutorial, Simon mentions ways you could extend his project setup. Implement any of his suggestions: 
-- More complex logic for creating supports (handle different length supports differently) Add more parameters to the user interface (for example, x and z offset options) UV and shade your models 
-- Add a “manual node” where users can control detail placement manually 
-- Add additional types of feature models (like fire escapes or chimneys). Note that, depending on what you choose, you might need to add new logic to integrate them into your building (ex: chimneys go on top instead of being chained on the side, fire escapes should be on one side of the building and go all the way down). We’ll award more extra credit accordingly.  
-- Add some flair to your scene by dressing together multiple buildings or additional procedural props or background elements 
+## How it works
 
-## Extra Credit
-Take some time to make your building demo-reel worthy, and render it with materials, a background, and lighting!
+**Part 1: stacking boxes.** Every floor has its own block of settings (a multiparm): height, size, how far it sticks out ("jetty"), and an offset. A wrangle turns that into one point per floor, and a box gets copied onto each point.
 
-## Submission
-Update your README with 
-A description of your project 
-A video of your building tool in action 
-Create a pull request to this repository 
-Submit your Houdini file to Canvas along with a link to your pull request 
-IMPORTANT NOTE: make sure your HDA is either embedded in the HIP file or included with your submission (see the instructions under “Part 1: Box Stacking HDA” for additional details).
+**Part 2: doors, windows, balconies.** Each wall gets chopped into slots. For every slot, the tool picks a door, a window, a balcony, or nothing. The rules: one front door on the ground floor, no balconies down there, balconies only on upper floors facing the street, and every balcony comes with a door behind it. Each part has its own yellow control node:
+
+| Part | Size knobs | Extra knob |
+|---|---|---|
+| Window | width, height | how many panes |
+| Door | width, height | single or double |
+| Balcony | width, railing height, depth | spindles or solid boards |
+| Chimney | width, height | clay pots on or off, how many |
+
+**Part 3: posts and beams.** A post goes on every slot edge, a beam runs along the top and bottom of every wall, and plain walls get thin upright studs. All of it is one box stretched to different sizes.
+
+**Part 4: supports.** For each post on an upper floor, the tool shoots a ray back into the building to see how far that floor hangs out over the one below. If it sticks out, it gets a brace.
+
+**Part 5: extras.**
+- *Smarter supports:* a short overhang gets a little wooden block, a medium one gets a diagonal brace, and a long one over the street also gets a post down to the ground.
+- *Roof and chimneys:* a gable roof sits on the top floor, with triangle walls at the ends. The ridge follows the longer side by default, so the inn gets side gables and the town house gets a gable facing the street. Chimneys sit along the ridge and can slide down the back slope.
+
+**Polish.**
+- Each floor can pick its own window style (normal, wide, tall, small) and turn its balconies or studs off.
+- Two built-in presets.
+- I tested 25 weird settings (1 floor, 6 floors, huge offsets, everything turned off...) and none of them break it.
+
+## Rendering (extra credit)
+
+- Two copies of the same HDA, one set up as the inn and one as the town house, standing side by side on a cobbled street.
+- UVs are projected in meters, so textures are the same size on every part.
+- Seven MaterialX materials, all made from noise with no image files: plaster with dirt near the ground, dark oak, lighter wood, glass, roof tiles, bricks, and cobbles.
+- Roof tiles and bricks use a staggered pattern with dark or light gaps.
+- Lighting is a warm sun plus a physical sky. Rendered in Karma at 1280×720 (the Apprentice limit).
+
+## Files
+
+- `buildings.hipnc`: the scene, with the HDA embedded.
+- `render/street.png`: the final render.
+- `demo.gif`: the short demo above.
