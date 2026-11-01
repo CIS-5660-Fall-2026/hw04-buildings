@@ -1,0 +1,17 @@
+int floors = chi("../floors");
+float height = chf("../floor_height");
+for (int i = 0; i < floors; i++)
+{
+    int shift = max(0, i - chi("../offset_start") + 1);
+    int step = max(0, i - chi("../setback_start") + 1);
+    float w = max(3.2, chf("../width") - 2 * step * chf("../setback"));
+    float d = max(3.2, chf("../depth") - 2 * step * chf("../setback"));
+    vector center = set(shift * chf("../offset_x"), (i + .5) * height,
+                        shift * chf("../offset_z"));
+    int pt = addpoint(0, center);
+    setpointattrib(0, "floor", pt, i);
+    setpointattrib(0, "scale", pt, set(w, height, d));
+    setpointattrib(0, "width", pt, w);
+    setpointattrib(0, "depth", pt, d);
+    setpointattrib(0, "height", pt, height);
+}

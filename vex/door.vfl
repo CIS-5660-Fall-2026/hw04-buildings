@@ -1,0 +1,26 @@
+float w = chf("../DOOR_CTRL/width");
+float h = chf("../DOOR_CTRL/height");
+int leaves = chi("../DOOR_CTRL/double_door") ? 2 : 1;
+vector stone = chv("../../trim_color");
+vector wood = set(.16,.075,.038);
+box(set(0,h/2,.035),set(w,h,.07),wood,"wood");
+for (int side = -1; side <= 1; side += 2)
+    box(set(side*(w+.16)/2,h/2,.10),set(.16,h+.08,.22),stone,"stone");
+box(set(0,h+.07,.10),set(w+.32,.14,.22),stone,"stone");
+box(set(0,.045,.23),set(w+.40,.09,.55),stone,"stone");
+box(set(0,h+.20,.13),set(w+.46,.10,.30),stone,"stone");
+for (int leaf = 0; leaf < leaves; leaf++)
+{
+    float x = -w/2 + (leaf+.5)*w/leaves;
+    float panelw = w/leaves-.15;
+    for (int row = 0; row < 3; row++)
+    {
+        float y = (row+.5)*h/3;
+        box(set(x,y,.083),set(panelw,h/3-.16,.035),wood*1.4,"wood");
+        box(set(x,y,.108),set(panelw-.07,h/3-.23,.018),wood*.85,"wood");
+    }
+    float handle_x = x + (leaf == 0 ? 1 : -1)*(w/leaves/2-.10);
+    box(set(handle_x,h*.48,.15),set(.035,.18,.07),set(.5,.31,.10),"metal");
+}
+if (leaves == 2)
+    box(set(0,h/2,.10),set(.045,h,.035),wood*.6,"wood");

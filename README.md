@@ -1,5 +1,81 @@
 # CIS 5660 HW04 Procedural Buildings
 
+Name: Yao Tang
+
+## Coastal Houses
+
+Two coastal buildings made with the same HDA. The left one has 4 floors,
+cream walls and a tiled roof. The right one has 5 floors, darker terracotta
+walls and a roof terrace. Both have green shutters and purple window flowers.
+
+![Result](media/coastal_houses.png)
+
+Demo video (9.6 s):
+
+https://github.com/user-attachments/assets/36344a8e-bda3-4618-a488-50051a88c263
+
+[Download MP4](media/tool_demo.mp4?raw=true) · [Flower close-up](media/window_flowers.png)
+
+The demo changes the building parameters, then shows the flower box switch and
+flower count (3 / 6 / 9) in a close-up.
+
+## References
+
+- Manarola: the pink house near the middle of the photo.
+- Riomaggiore: the red house at the front, next to the water.
+- Mainly used the shutters, balconies and floor bands as references. The shapes
+  are simplified, and the colors are different from the photos.
+
+| Manarola | Riomaggiore |
+| --- | --- |
+| ![Manarola reference](reference/manarola.jpg) | ![Riomaggiore reference](reference/riomaggiore.jpg) |
+
+Photos: [Vald0506](https://commons.wikimedia.org/wiki/File:Houses_in_Manarola,_Cinque_Terre,_Italy.jpg)
+([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)) and
+[Elisavans](https://commons.wikimedia.org/wiki/File:Colori_di_Riomaggiore.jpg)
+([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)).
+
+## Build notes
+
+- Box-stack HDA for the floors. X/Z offsets and setbacks change each floor's footprint.
+- Windows, doors and balconies are separate models, placed with Copy to Points.
+- Pilasters and border pieces repeat along each floor.
+- Supports start at exposed floor corners and stop at a lower floor or the ground.
+  Longer supports are thicker.
+- Chimneys follow the top floor. Flower boxes, leaves and petals are part of the window model.
+- Beach, sea, surf and sky are procedural geometry. UVs and materials are included.
+- Exterior model only; no interiors or wall cutouts.
+
+The building nodes are `/obj/MANAROLA/building` and `/obj/RIOMAGGIORE/building`.
+The controls below are inside each building HDA and are also exposed on its interface.
+
+| Control node | Parameters |
+| --- | --- |
+| `window_model/WINDOW_CTRL` | Width, height, shutters, shutter angle, slat count, flower box, flower count |
+| `door_model/DOOR_CTRL` | Width, height, single/double door |
+| `balcony_model/BALCONY_CTRL` | Width, railing height, depth, rail spacing |
+
+Small bays scale the facade models down. Window height is also limited by the
+floor height. Floor indices for offsets and setbacks start at 0.
+
+## Files
+
+Houdini 22.0.466 Apprentice + SideFX Labs 22.0.466 Production.
+Both HIP files have the HDA definitions embedded.
+
+- `coastal_houses.hipnc`: main scene, viewed through `presentation_camera`.
+- `coastal_demo.hipnc`: parameter animation, viewed through `demo_camera`.
+- `otls/coastal_buildings.hdanc`: separate box-stack and building HDA definitions.
+- `vex/` and `scripts/`: modeling code and scene/render scripts.
+
+Checked 1 and 8 floors, positive/negative offsets and changes to the component
+sizes. The HIP files and the standalone HDA also load independently.
+[Check results](media/validation.json).
+
+---
+
+## Assignment brief
+
 ## Project Overview
 In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
 

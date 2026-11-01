@@ -1,0 +1,62 @@
+void petal(vector center, length_axis, width_axis, normal, color; string material)
+{
+    int tip = addpoint(0,center+normal*.012);
+    int rim[];
+    for (int i = 0; i < 6; i++)
+    {
+        float angle = i*M_PI/3;
+        append(rim,addpoint(0,center+length_axis*cos(angle)+width_axis*sin(angle)));
+    }
+    for (int i = 0; i < 6; i++)
+        face(array(tip,rim[i],rim[(i+1)%6]),color,material);
+}
+
+void flower(vector center; float radius, phase; vector color)
+{
+    vector normal = normalize(set(.04,.50,1));
+    vector u = set(1,0,0);
+    vector v = normalize(cross(normal,u));
+    for (int i = 0; i < 5; i++)
+    {
+        float angle = phase+i*2*M_PI/5;
+        vector along = u*cos(angle)+v*sin(angle);
+        vector across = -u*sin(angle)+v*cos(angle);
+        petal(center+along*radius*.53,along*radius*.66,across*radius*.39,
+              normal,color*(.93+.035*i),"flower");
+    }
+    petal(center+normal*.018,u*radius*.19,v*radius*.19,normal,
+          set(.72,.43,.13),"flower");
+}
+
+void window_flowers(float width, height; int count)
+{
+    float y = -height/2;
+    vector clay = set(.35,.20,.12);
+    vector green = set(.075,.22,.075);
+    float box_width = width*.91;
+    box(set(0,y-.02,.32),set(box_width,.08,.32),clay,"tile");
+    box(set(0,y+.09,.47),set(box_width,.20,.04),clay,"tile");
+    box(set(0,y+.09,.17),set(box_width,.20,.04),clay,"tile");
+    for (int side = -1; side <= 1; side += 2)
+        box(set(side*(box_width-.04)/2,y+.09,.32),set(.04,.20,.30),clay,"tile");
+    box(set(0,y+.13,.32),set(box_width-.07,.03,.25),set(.065,.042,.025),"soil");
+
+    for (int i = 0; i < count; i++)
+    {
+        float x = fit(i+.5,0,count,-width*.41,width*.41);
+        float z = fit01(rand(i*37+8),.28,.42);
+        float stem = fit01(rand(i*19+3),.18,.34);
+        vector root = set(x,y+.14,z);
+        box(root+set(0,stem/2,0),set(.014,stem,.014),green,"foliage");
+        for (int side = -1; side <= 1; side += 2)
+        {
+            vector dir = normalize(set(side,.35,.3));
+            vector center = root+set(0,stem*.35,0)+dir*.07;
+            petal(center,dir*.12,set(0,.018,.045),set(0,1,0),
+                  green*(side>0 ? 1.2 : .9),"foliage");
+        }
+        float shade = rand(i*41+4);
+        vector purple = lerp(set(.28,.035,.49),set(.55,.18,.76),shade);
+        flower(root+set(0,stem,0),fit01(rand(i*13+2),.105,.135),i*.7,purple);
+    }
+}

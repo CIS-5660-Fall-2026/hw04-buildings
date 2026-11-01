@@ -1,0 +1,273 @@
+{
+  "houdini": "22.0.466",
+  "license": "licenseCategoryType.Apprentice",
+  "passed": 53,
+  "total": 53,
+  "checks": [
+    {
+      "check": "One HDA type for both buildings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Building HDA embedded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Stack HDA embedded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Separate asset library included",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Manarola geometry",
+      "passed": true,
+      "detail": "40102 points, 32180 polygons"
+    },
+    {
+      "check": "Manarola floor boxes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Manarola facade layout",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Manarola one entrance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Manarola UVs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Manarola internal materials",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Manarola finite coordinates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Riomaggiore geometry",
+      "passed": true,
+      "detail": "50744 points, 40704 polygons"
+    },
+    {
+      "check": "Riomaggiore floor boxes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Riomaggiore facade layout",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Riomaggiore one entrance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Riomaggiore UVs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Riomaggiore internal materials",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Riomaggiore finite coordinates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "window Null control",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "window width changes model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "window height changes model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "door Null control",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "door width changes model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "door height changes model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "balcony Null control",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "balcony width changes model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "balcony height changes model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Shutters toggle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Shutter angle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Single / double doors",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Balcony depth",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Balcony rail spacing",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "One-floor case",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Eight-floor case",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "No supports for aligned floors",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Supports land on geometry (0.55, 0.4)",
+      "passed": true,
+      "detail": "6 columns"
+    },
+    {
+      "check": "Supports land on geometry (-0.55, -0.4)",
+      "passed": true,
+      "detail": "6 columns"
+    },
+    {
+      "check": "Supports land on geometry (0.55, -0.4)",
+      "passed": true,
+      "detail": "6 columns"
+    },
+    {
+      "check": "Support toggle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Balcony toggle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Front facade only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Horizontally instanced pilasters",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Floor borders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Chimney count",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Riomaggiore preset button",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Manarola preset button",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Narrow footprint and dense bays cook",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Tall windows stay within each floor",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Fresh HDA instance cooks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "window Null editable inside HDA",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "door Null editable inside HDA",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "balcony Null editable inside HDA",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "All SOPs cook without errors",
+      "passed": true,
+      "detail": "[]"
+    }
+  ]
+}

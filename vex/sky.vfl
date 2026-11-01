@@ -1,0 +1,22 @@
+int cols = 120;
+int rows = 60;
+vector right = set(.842,0,-.539);
+vector center = set(-.539,0,-.842)*800;
+for (int j = 0; j <= rows; j++)
+for (int i = 0; i <= cols; i++)
+{
+    float x = fit(i,0,cols,-900,900);
+    float y = fit(j,0,rows,-80,400);
+    vector color = lerp(set(.46,.69,.81),set(.12,.39,.65),smooth(0,120,y));
+    float clouds = noise(set(x*.016,y*.052,12))*.7 + noise(set(x*.039,y*.11,3))*.3;
+    float mask = smooth(.57,.72,clouds)*smooth(8,35,y)*(1-smooth(100,160,y));
+    color = lerp(color,set(.83,.88,.88),mask*.72);
+    int p = addpoint(0,center+right*x+set(0,y,0));
+    setpointattrib(0,"Cd",p,color);
+}
+for (int j = 0; j < rows; j++)
+for (int i = 0; i < cols; i++)
+{
+    int a = j*(cols+1)+i;
+    addprim(0,"poly",array(a,a+1,a+cols+2,a+cols+1));
+}

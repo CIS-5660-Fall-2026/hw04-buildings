@@ -1,0 +1,30 @@
+void face(int pts[]; vector color; string material)
+{
+    int prim = addprim(0, "poly", pts);
+    setprimattrib(0, "Cd", prim, color);
+    setprimattrib(0, "material", prim, material);
+    vector uv[] = array(set(0, 0, 0), set(1, 0, 0), set(1, 1, 0), set(0, 1, 0));
+    for (int i = 0; i < len(pts); i++)
+        setvertexattrib(0, "uv", prim, i, uv[i % 4]);
+}
+
+void boxr(vector center, size; matrix3 rotation; vector color; string material)
+{
+    vector corners[] = array(
+        set(-1,-1,-1), set(1,-1,-1), set(1,1,-1), set(-1,1,-1),
+        set(-1,-1,1), set(1,-1,1), set(1,1,1), set(-1,1,1));
+    int pts[];
+    foreach (vector corner; corners)
+        append(pts, addpoint(0, center + (corner * size * .5) * rotation));
+    face(array(pts[0],pts[3],pts[2],pts[1]), color, material);
+    face(array(pts[4],pts[5],pts[6],pts[7]), color, material);
+    face(array(pts[0],pts[4],pts[7],pts[3]), color, material);
+    face(array(pts[1],pts[2],pts[6],pts[5]), color, material);
+    face(array(pts[3],pts[7],pts[6],pts[2]), color, material);
+    face(array(pts[0],pts[1],pts[5],pts[4]), color, material);
+}
+
+void box(vector center, size, color; string material)
+{
+    boxr(center, size, ident(), color, material);
+}

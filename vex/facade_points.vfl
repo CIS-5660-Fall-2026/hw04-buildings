@@ -1,0 +1,60 @@
+int kind = chi("kind"); // 0: windows, 1: doors, 2: balconies, 3: pilasters
+for (int floor = 0; floor < npoints(1); floor++)
+{
+    vector c = point(1,"P",floor);
+    float w = point(1,"width",floor);
+    float d = point(1,"depth",floor);
+    float h = point(1,"height",floor);
+    float base = floor*h;
+    for (int side = 0; side < 4; side++)
+    {
+        if (side > 0 && !chi("../all_sides")) continue;
+        float length = (side % 2 == 0) ? w : d;
+        int bays = (side % 2 == 0) ? chi("../front_bays") : chi("../side_bays");
+        vector normal = set(sin(side*M_PI/2),0,cos(side*M_PI/2));
+        vector along = set(cos(side*M_PI/2),0,-sin(side*M_PI/2));
+        vector center = set(c.x,base,c.z) + normal*((side%2==0 ? d : w)/2+.006);
+        for (int bay = 0; bay < bays; bay++)
+        {
+            int entrance = floor==0 && side==0 && bay==bays/2;
+            int balcony = floor>0 && side==0 && ((bay+floor)%chi("../balcony_every")==0);
+            if (kind==0 && entrance) continue;
+            if (kind==1 && !entrance) continue;
+            if (kind==2 && (!balcony || !chi("../balconies"))) continue;
+            if (kind==3) continue;
+            float sy = kind==0 && balcony && chi("../balconies") ? 1.35 : 1;
+            float y = .10;
+            if (kind==0)
+            {
+                float wh = chf("../window_height");
+                sy = min(sy,(h-.50)/(wh+.395));
+                float low = .25+(wh/2+.19)*sy;
+                float high = h-.25-(wh/2+.205)*sy;
+                y = balcony && chi("../balconies") ? low : clamp(1.60,low,high);
+            }
+            vector pos = center+along*((bay+.5)*length/bays-length/2)+set(0,y,0);
+            int pt = addpoint(0,pos);
+            setpointattrib(0,"N",pt,normal);
+            setpointattrib(0,"up",pt,set(0,1,0));
+            setpointattrib(0,"floor",pt,floor);
+            setpointattrib(0,"bay",pt,bay);
+            float model_width = kind==2 ? chf("../balcony_width")+.18 : chf("../door_width")+.46;
+            if (kind==0) model_width = chf("../window_width")*(chi("../window_shutters") ? 2 : 1)+.35;
+            float sx = min(1,(length/bays-.22)/model_width);
+            if (kind==1) sy = min(1,(h-.48)/chf("../door_height"));
+            setpointattrib(0,"scale",pt,set(sx,sy,1));
+        }
+        if (kind==3)
+        {
+            for (int bay = 0; bay <= bays; bay++)
+            {
+                if (floor>0 && bay!=0 && bay!=bays) continue;
+                float x = clamp(bay*length/bays-length/2,-length/2+.17,length/2-.17);
+                int pt = addpoint(0,center+along*x+set(0,h/2,0));
+                setpointattrib(0,"N",pt,normal);
+                setpointattrib(0,"up",pt,set(0,1,0));
+                setpointattrib(0,"scale",pt,set(1,h-.24,1));
+            }
+        }
+    }
+}
