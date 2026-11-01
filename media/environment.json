@@ -1,0 +1,11 @@
+{
+  "houdini": "22.0.466",
+  "license": "Apprentice Non-Commercial",
+  "labs": {
+    "version": "22.0.466",
+    "channel": "SideFX Labs 22.0 Production Build",
+    "catalog": "https://www.sidefx.com/download/download-labs/packages/",
+    "checksum": "sha-256=A91vuya6UKxmP/mkLamyvg1dZxwytMFMoTwYrn0HT0U="
+  },
+  "scene_uses_labs_nodes": false
+}

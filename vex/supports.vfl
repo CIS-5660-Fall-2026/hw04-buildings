@@ -1,0 +1,40 @@
+if (chi("../supports"))
+{
+    for (int floor = 1; floor < npoints(1); floor++)
+    {
+        vector c = point(1,"P",floor);
+        float w = point(1,"width",floor);
+        float d = point(1,"depth",floor);
+        float h = point(1,"height",floor);
+        vector lower = point(1,"P",floor-1);
+        float lw = point(1,"width",floor-1);
+        float ld = point(1,"depth",floor-1);
+        for (int xsign = -1; xsign <= 1; xsign += 2)
+        for (int zsign = -1; zsign <= 1; zsign += 2)
+        {
+            vector pos = set(c.x+xsign*(w/2-.12),0,c.z+zsign*(d/2-.12));
+            if (abs(pos.x-lower.x)<=lw/2 && abs(pos.z-lower.z)<=ld/2) continue;
+            float bottom = 0;
+            for (int j = floor-2; j >= 0; j--)
+            {
+                vector prev = point(1,"P",j);
+                float pw = point(1,"width",j);
+                float pd = point(1,"depth",j);
+                if (abs(pos.x-prev.x)<pw/2 && abs(pos.z-prev.z)<pd/2)
+                {
+                    bottom = (j+1)*h;
+                    break;
+                }
+            }
+            float top = floor*h-.06;
+            float length = top-bottom;
+            pos.y = (top+bottom)/2;
+            int pt = addpoint(0,pos);
+            float thickness = chf("../support_width")*(length>h*1.5 ? 1.4 : 1);
+            setpointattrib(0,"scale",pt,set(thickness,length,thickness));
+            setpointattrib(0,"bottom",pt,bottom);
+            setpointattrib(0,"top",pt,top);
+            setpointattrib(0,"floor",pt,floor);
+        }
+    }
+}

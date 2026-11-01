@@ -1,0 +1,51 @@
+[
+  {
+    "file": "coastal_houses.hipnc",
+    "fps": 24.0,
+    "frames_checked": [
+      1
+    ],
+    "embedded_only": true,
+    "setting_polygons": {
+      "BEACH": 14400,
+      "SEA": 33000,
+      "SURF": 4200,
+      "SKY": 7200
+    }
+  },
+  {
+    "file": "coastal_demo.hipnc",
+    "fps": 25.0,
+    "frames_checked": [
+      1,
+      25,
+      61,
+      110,
+      150,
+      185,
+      240
+    ],
+    "embedded_only": true,
+    "setting_polygons": {
+      "BEACH": 14400,
+      "SEA": 33000,
+      "SURF": 4200,
+      "SKY": 7200
+    }
+  },
+  {
+    "file": "otls/coastal_buildings.hdanc",
+    "standalone_presets": [
+      {
+        "preset": 0,
+        "polygons": 32180,
+        "passed": true
+      },
+      {
+        "preset": 1,
+        "polygons": 40704,
+        "passed": true
+      }
+    ]
+  }
+]

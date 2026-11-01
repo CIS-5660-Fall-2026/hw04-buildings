@@ -1,0 +1,68 @@
+int last = npoints(1)-1;
+vector c = point(1,"P",last);
+float w = point(1,"width",last);
+float d = point(1,"depth",last);
+float h = point(1,"height",last);
+float y = (last+1)*h;
+vector stone = chv("../trim_color");
+vector terracotta = set(.44,.17,.085);
+vector iron = set(.055,.08,.075);
+box(set(c.x,y,c.z),set(w+.46,.22,d+.46),stone,"stone");
+box(set(c.x,y-.15,c.z),set(w+.22,.12,d+.22),stone*.90,"stone");
+
+float rise = chi("../roof_style") ? chf("../roof_rise") : 0;
+if (chi("../roof_style"))
+{
+    float half = (d+.65)/2;
+    float slope = atan(rise/half);
+    for (int side = -1; side <= 1; side += 2)
+    {
+        matrix3 rot = ident();
+        rotate(rot,side*slope,set(1,0,0));
+        boxr(set(c.x,y+.20+rise/2,c.z+side*half/2),
+             set(w+.65,.13,sqrt(half*half+rise*rise)),rot,terracotta,"tile");
+        int rows = int(ceil(half/.24));
+        for (int row = 0; row <= rows; row++)
+        {
+            float z = row*half/rows;
+            boxr(set(c.x,y+.30+rise*(1-z/half),c.z+side*z),
+                 set(w+.70,.055,.065),rot,terracotta*1.18,"tile");
+        }
+    }
+    for (int side = -1; side <= 1; side += 2)
+    {
+        int a = addpoint(0,set(c.x+side*w/2,y+.08,c.z-d/2));
+        int b = addpoint(0,set(c.x+side*w/2,y+.08,c.z+d/2));
+        int t = addpoint(0,set(c.x+side*w/2,y+.20+rise,c.z));
+        if (side>0) face(array(a,t,b),chv("../wall_color"),"plaster");
+        else face(array(a,b,t),chv("../wall_color"),"plaster");
+    }
+}
+else
+{
+    box(set(c.x,y+.13,c.z),set(w,.05,d),set(.45,.39,.31),"stone");
+    for (int side = 0; side < 4; side++)
+    {
+        vector normal = set(sin(side*M_PI/2),0,cos(side*M_PI/2));
+        vector along = set(cos(side*M_PI/2),0,-sin(side*M_PI/2));
+        float length = (side%2==0 ? w : d)-.18;
+        vector center = set(c.x,y+.14,c.z)+normal*((side%2==0 ? d : w)/2-.09);
+        vector railsize = side%2==0 ? set(length,.045,.045) : set(.045,.045,length);
+        box(center+set(0,.68,0),railsize,iron,"metal");
+        int count = int(ceil(length/.20));
+        for (int j = 0; j <= count; j++)
+            box(center+along*fit(j,0,count,-length/2,length/2)+set(0,.34,0),
+                set(.026,.68,.026),iron,"metal");
+    }
+}
+
+for (int i = 0; i < chi("../chimneys"); i++)
+{
+    float x = c.x+fit(i+.5,0,max(1,chi("../chimneys")),-w*.34,w*.34);
+    float z = c.z-d*.23;
+    float base = y+.18+rise*.58;
+    box(set(x,base+.55,z),set(.50,1.10,.56),chv("../wall_color")*.88,"plaster");
+    box(set(x,base+1.14,z),set(.64,.12,.70),stone,"stone");
+    box(set(x,base+1.28,z),set(.36,.16,.40),iron,"metal");
+    box(set(x,base+1.40,z),set(.68,.10,.74),terracotta,"tile");
+}

@@ -1,0 +1,43 @@
+float w = chf("../WINDOW_CTRL/width");
+float h = chf("../WINDOW_CTRL/height");
+float frame = .085;
+vector stone = chv("../../trim_color");
+vector wood = chv("../../shutter_color");
+vector glass = set(.065, .16, .19);
+box(set(0,0,.025), set(w,h,.045), glass, "glass");
+for (int side = -1; side <= 1; side += 2)
+{
+    box(set(side * (w + frame) / 2,0,.09), set(frame,h+2*frame,.18), stone, "stone");
+    box(set(0,side * (h + frame) / 2,.09), set(w,frame,.18), stone, "stone");
+}
+box(set(0,0,.09), set(.035,h,.08), stone, "wood");
+box(set(0,.12*h,.09), set(w,.035,.08), stone, "wood");
+box(set(0,-h/2-.13,.17), set(w+.38,.12,.45), stone, "stone");
+box(set(0,h/2+.16,.09), set(w+.28,.09,.24), stone, "stone");
+
+if (chi("../WINDOW_CTRL/shutters"))
+{
+    float sw = w / 2;
+    int slats = chi("../WINDOW_CTRL/slats");
+    for (int side = -1; side <= 1; side += 2)
+    {
+        matrix3 rot = ident();
+        rotate(rot, radians(side * chf("../WINDOW_CTRL/open_angle")), set(0,1,0));
+        vector hinge = set(side * (w/2+frame),0,.18);
+        vector local_center = set(-side*sw/2,0,0);
+        vector c = hinge + local_center * rot;
+        for (int edge = -1; edge <= 1; edge += 2)
+        {
+            boxr(c + set(edge*(sw-.06)/2,0,0)*rot, set(.06,h,.07), rot, wood, "wood");
+            boxr(c + set(0,edge*(h-.07)/2,0)*rot, set(sw,.07,.07), rot, wood, "wood");
+        }
+        for (int j = 0; j < slats; j++)
+        {
+            float y = fit(j+.5,0,slats,-h/2+.08,h/2-.08);
+            boxr(c+set(0,y,0)*rot, set(sw-.10,(h-.16)/slats*.72,.055), rot, wood, "wood");
+        }
+    }
+}
+
+if (chi("../WINDOW_CTRL/flower_box"))
+    window_flowers(w,h,chi("../WINDOW_CTRL/flower_count"));

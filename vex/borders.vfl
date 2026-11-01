@@ -1,0 +1,16 @@
+vector stone = chv("../trim_color");
+for (int floor = 0; floor < npoints(1); floor++)
+{
+    vector c = point(1,"P",floor);
+    float w = point(1,"width",floor);
+    float d = point(1,"depth",floor);
+    float h = point(1,"height",floor);
+    float y = floor*h+.03;
+    for (int side = -1; side <= 1; side += 2)
+    {
+        box(set(c.x,y,c.z+side*d/2),set(w+.25,.18,.26),stone,"stone");
+        box(set(c.x+side*w/2,y,c.z),set(.26,.18,d+.25),stone,"stone");
+        box(set(c.x,y+.14,c.z+side*d/2),set(w+.12,.06,.15),stone,"stone");
+        box(set(c.x+side*w/2,y+.14,c.z),set(.15,.06,d+.12),stone,"stone");
+    }
+}

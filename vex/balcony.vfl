@@ -1,0 +1,26 @@
+float w = chf("../BALCONY_CTRL/width");
+float h = chf("../BALCONY_CTRL/height");
+float d = chf("../BALCONY_CTRL/depth");
+float spacing = chf("../BALCONY_CTRL/rail_spacing");
+vector stone = chv("../../trim_color");
+vector iron = set(.055,.08,.075);
+box(set(0,0,d/2),set(w+.18,.15,d+.10),stone,"stone");
+box(set(0,-.10,d/2),set(w+.06,.06,d),stone*.8,"stone");
+for (int level = 0; level < 2; level++)
+{
+    float y = level ? h : .20;
+    box(set(0,y,d),set(w,.045,.045),iron,"metal");
+    for (int side = -1; side <= 1; side += 2)
+        box(set(side*w/2,y,d/2),set(.045,.045,d),iron,"metal");
+}
+int bars = max(2,int(ceil(w/spacing)));
+for (int i = 0; i <= bars; i++)
+    box(set(fit(i,0,bars,-w/2,w/2),h/2,d),set(.026,h,.026),iron,"metal");
+int sidebars = max(2,int(ceil(d/spacing)));
+for (int side = -1; side <= 1; side += 2)
+{
+    for (int i = 0; i < sidebars; i++)
+        box(set(side*w/2,h/2,fit(i,0,sidebars,0,d)),set(.026,h,.026),iron,"metal");
+    box(set(side*w/2,h/2,d),set(.055,h+.07,.055),iron,"metal");
+    box(set(side*w*.32,-.30,.16),set(.10,.45,.30),stone,"stone");
+}

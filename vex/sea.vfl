@@ -1,0 +1,24 @@
+int cols = 220;
+int rows = 150;
+for (int j = 0; j <= rows; j++)
+for (int i = 0; i <= cols; i++)
+{
+    float u = fit(i,0,cols,-1,1);
+    float x = sign(u)*pow(abs(u),1.7)*1200;
+    float distance = 1700*pow(float(j)/rows,1.8);
+    float z = shoreline(x)-distance;
+    float y = sea_height(x,distance);
+    vector shallow = set(.065,.38,.40);
+    vector deep = set(.018,.16,.27);
+    vector color = lerp(shallow,deep,smooth(0,70,distance));
+    color *= fit01(noise(set(x*.13,z*.13,2)),.94,1.06);
+    int p = addpoint(0,set(x,y,z));
+    setpointattrib(0,"Cd",p,color);
+    setpointattrib(0,"uv",p,set(x*.03,z*.03,0));
+}
+for (int j = 0; j < rows; j++)
+for (int i = 0; i < cols; i++)
+{
+    int a = j*(cols+1)+i;
+    addprim(0,"poly",array(a,a+1,a+cols+2,a+cols+1));
+}

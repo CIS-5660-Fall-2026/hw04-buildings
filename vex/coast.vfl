@@ -1,0 +1,10 @@
+float shoreline(float x)
+{
+    return -13.0 + sin(x*.12)*1.2 + sin(x*.31)*.4;
+}
+
+float sea_height(float x, distance)
+{
+    float waves = .045*sin(x*.47+distance*.82) + .018*sin(x*.93-distance*1.4);
+    return -.66 + waves*smooth(0,2,distance);
+}
