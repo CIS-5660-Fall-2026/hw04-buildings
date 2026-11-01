@@ -1,0 +1,10 @@
+{
+  "errors": {},
+  "bounds": "[-17.2, 17.2, -0.225, 13.3, -11.63, 9.9]",
+  "primitives": 25122,
+  "terrace_area": 126.27999877929688,
+  "railing_segments": 48,
+  "custom_hda_embedded": [
+    "ronan83::terrace_weave::1.0"
+  ]
+}

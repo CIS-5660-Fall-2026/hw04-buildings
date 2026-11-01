@@ -1,0 +1,88 @@
+{
+  "default": {
+    "primitives": 25122,
+    "bounds": "[-17.2, 17.2, -0.225, 13.3, -11.63, 9.9]",
+    "terrace_area": 126.27999877929688,
+    "access_doors": 7
+  },
+  "terrace_toggle": "pass",
+  "support_toggle": "pass",
+  "window_panes": "pass",
+  "window_height": "pass",
+  "single_door": "pass",
+  "balcony_spacing": "pass",
+  "floor_width": "pass",
+  "floor_offset": "pass",
+  "second_preset": {
+    "primitives": 28794,
+    "bounds": "[-15, 15, -0.225, 16.5, -11.87, 10.1]",
+    "terrace_area": 183.96400451660156,
+    "access_doors": 8
+  },
+  "preset_restore": "pass",
+  "native_controls": [
+    {
+      "node": "/obj/TERRACE_WEAVE/BUILDING_GENERATOR/CTRL_WINDOW",
+      "parameters": [
+        "width",
+        "height",
+        "panes"
+      ]
+    },
+    {
+      "node": "/obj/TERRACE_WEAVE/BUILDING_GENERATOR/CTRL_DOOR",
+      "parameters": [
+        "width",
+        "height",
+        "double"
+      ]
+    },
+    {
+      "node": "/obj/TERRACE_WEAVE/BUILDING_GENERATOR/CTRL_BALCONY",
+      "parameters": [
+        "width",
+        "height",
+        "depth",
+        "spacing"
+      ]
+    }
+  ],
+  "errors": [],
+  "saved_hip_reopen": {
+    "result": "pass",
+    "embedded_definition": "Embedded",
+    "default_primitives": 25122,
+    "alternative_primitives": 28794,
+    "errors": {}
+  },
+  "approved_appearance": {
+    "geometry_unchanged": true,
+    "render_camera_unchanged": true,
+    "point_colors": "wood",
+    "sop_errors": {},
+    "reopened_colored_hip": "pass"
+  },
+  "tool_demo": {
+    "source": "actual Houdini UI mouse drags and clicks",
+    "source_frames": 512,
+    "video_frames": 889,
+    "seconds": 59.27,
+    "fps": 15,
+    "size": [
+      1920,
+      1074
+    ],
+    "top_title_bar_cropped": 56,
+    "synthetic_cursor_added": false,
+    "demonstrated": [
+      "floor width",
+      "window width and panes",
+      "single/double door",
+      "balcony depth and spacing",
+      "terraces",
+      "supports",
+      "two presets"
+    ],
+    "result": "pass"
+  }
+}
