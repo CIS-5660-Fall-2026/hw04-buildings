@@ -10,7 +10,11 @@ walls and a roof terrace. Both have green shutters and purple window flowers.
 
 ![Result](media/coastal_houses.png)
 
-[Demo video (9.6 s)](media/tool_demo.mp4) · [Flower close-up](media/window_flowers.png)
+Demo video (9.6 s):
+
+https://github.com/user-attachments/assets/36344a8e-bda3-4618-a488-50051a88c263
+
+[Download MP4](media/tool_demo.mp4?raw=true) · [Flower close-up](media/window_flowers.png)
 
 The demo changes the building parameters, then shows the flower box switch and
 flower count (3 / 6 / 9) in a close-up.
