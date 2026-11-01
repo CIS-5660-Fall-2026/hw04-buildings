@@ -6,7 +6,7 @@ A procedural housing tool in Houdini, inspired by BIG's Dortheavej Residences an
 
 ![Four-storey Dortheavej-inspired variation, rendered in Houdini](images/hero.png)
 
-**[Watch the tool demo · 44 seconds](media/tool_demo.mp4)** · [Houdini project](hw04.hipnc)
+**[Watch the tool demo](media/tool_demo.mp4)** · [Houdini project](hw04.hipnc)
 
 ## Design references
 

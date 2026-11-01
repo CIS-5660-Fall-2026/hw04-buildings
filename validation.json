@@ -63,12 +63,26 @@
     "reopened_colored_hip": "pass"
   },
   "tool_demo": {
-    "source": "actual Houdini app capture",
-    "source_frames": 765,
-    "video_frames": 444,
-    "seconds": 44.4,
-    "fps": 10,
-    "all_13_steps_captured": true,
+    "source": "actual Houdini UI mouse drags and clicks",
+    "source_frames": 512,
+    "video_frames": 889,
+    "seconds": 59.27,
+    "fps": 15,
+    "size": [
+      1920,
+      1074
+    ],
+    "top_title_bar_cropped": 56,
+    "synthetic_cursor_added": false,
+    "demonstrated": [
+      "floor width",
+      "window width and panes",
+      "single/double door",
+      "balcony depth and spacing",
+      "terraces",
+      "supports",
+      "two presets"
+    ],
     "result": "pass"
   }
 }
