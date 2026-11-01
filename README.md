@@ -1,53 +1,56 @@
 # CIS 5660 HW04 Procedural Buildings
 
-## Project Overview
-In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
+## Terrace Weave
 
-## Part 0: Setup and Planning 
-### SideFX Labs 
-If you didn't install SideFX Labs during lab 06, make sure you do so for this homework. You can do so at the “Labs/Packages” tab of the Houdini Launcher. Make sure that the version of Labs that you install is not newer than your overall Houdini install (e.g. if you have Houdini 21.544, don't install Labs 22.650). Use the Production version of Labs, not the Daily.
+A procedural housing tool in Houdini, inspired by BIG's Dortheavej Residences and Sneglehusene Housing. I focused on repeated timber modules, deep window frames and outdoor terraces, using alternating recessed bays to give the façade its rhythm.
 
-### Project Planning
-Before implementing any Houdini nodes or VEX code, take some time to look at different architectural styles (realistic or fictional). Decide on two different buildings that use the architectural style you chose, and add to this README concept art or photographs of your chosen buildings, citing your sources. You will be using the techniques you practiced in Lab 06 to procedurally generate buildings modeled after the ones you selected. Your buildings should be stylistically similar enough that your tool can be used to create either one by modifying its parameters.
+![Four-storey Dortheavej-inspired variation, rendered in Houdini](images/hero.png)
 
-Do make sure that what you choose is manageable given your knowledge Houdini and what is taught in the tutorial. Of course, you’re welcome to adapt the setup to support additional logic/features to match your style, and particularly complex additions could merit extra credit :) On the other hand, if you’re newer to Houdini and want to stick relatively close to the tutorial, that’s okay too. Just be sure to think through what changes your chosen buildings will require (additional assets? different placement logic?) before diving into the project so you don’t bite off more than you can chew.  
-Here are a few examples of possible building styles that could be a decent fit for inspiration:
-CIS 5660 HW03 Procedural Building 1 
-https://www.behance.net/gallery/23773965/ISOBuilding-concept-art 
+**[Watch the tool demo · 44 seconds](media/tool_demo.mp4)** · [Houdini project](hw04.hipnc)
 
-https://www.artstation.com/artwork/m6xYy 
+## Design references
 
-## Part 1: Box Stacking HDA
-As you did in lab 06, follow the tutorial to make a simple HDA that stacks boxes on each other.  Important note about HDA creation:  
-Creating an HDA saves a .hda file at the location you specify with the definition of your HDA. Be sure to submit this .hda file along with your .hip file so we can see the contents of your tool.  
-Alternatively, when you save your HDA you can choose the “Embedded in HIP File” option (rather than specifying the path), and the hda definition will be automatically embedded in your hip file (and no additional files will be needed with submission).  
+| Dortheavej Residences — Copenhagen | Sneglehusene Housing — Aarhus |
+| --- | --- |
+| ![Dortheavej](references/dortheavej.jpg) | ![Sneglehusene](references/sneglehusene.png) |
+| [BIG project](https://css.big.dk/projects/dortheavej-2-residences-2442) · [Photo source](https://danishdesignreview.com/apartment/2019/4/1/dorotheavej-apartments-by-big) | [Architect's description](https://www.archdaily.com/989940/sneglehusene-housing-big) · [Photo: Rasmus Hjortshøj](https://traeinfo.dk/sneglehusene/) |
 
-## Part 2: Add Details
-Next, Simon adds details to the boxes to create floors by refining the shape and adding details like windows, doors, and balconies.  
-Create your own models for windows, doors, and balconies based on your chosen style using Houdini. For each of the three types, create a Null “control” node with parameters that affect your window/door/balcony output (similar to how we made a control node for the jellyfish).  
-You should have parameters to drive the width and height of the doors, windows, and balconies, as well as at least one other parameter of your choosing on each one (ex: double vs single doors, windows with and without shutters, and type of balcony railing). Apart from that, you can go as simple or complex as you like!  
-Then follow Simon’s setup to integrate your windows, doors, and balconies into your buildings.  
+My versions adapt the references' stacked modules and outdoor spaces to smaller, rectilinear buildings, with timber cladding, large glazed openings and thin metal railings.
 
-## Part 3: Pillars and Border
-Continue following the tutorial to add pillars and borders to each floor. Depending on your chosen style, your building may not make use of pillars. In this case, still use the technique shown to add horizontally-instanced elements of some kind to your building.
+## Generator
 
-## Part 4: Supports
-Continue following the tutorial to add supports to floors that overhang other floors.  
+One HDA controls floor count, per-floor dimensions and X/Z offsets, recesses and setbacks. Native Box and Copy to Points nodes build the stack and place façade components; Python SOPs calculate the layout, terraces and supports.
 
-## Part 5: Feature of your choice
-Throughout the tutorial, Simon mentions ways you could extend his project setup. Implement any of his suggestions: 
-- More complex logic for creating supports (handle different length supports differently) Add more parameters to the user interface (for example, x and z offset options) UV and shade your models 
-- Add a “manual node” where users can control detail placement manually 
-- Add additional types of feature models (like fire escapes or chimneys). Note that, depending on what you choose, you might need to add new logic to integrate them into your building (ex: chimneys go on top instead of being chained on the side, fire escapes should be on one side of the building and go all the way down). We’ll award more extra credit accordingly.  
-- Add some flair to your scene by dressing together multiple buildings or additional procedural props or background elements 
+Windows, doors and balconies are modeled in Houdini, each with its own Null controller:
+
+| Component | Exposed controls |
+| --- | --- |
+| Window — `CTRL_WINDOW` | Width, height, pane count |
+| Door — `CTRL_DOOR` | Width, height, single/double door |
+| Balcony — `CTRL_BALCONY` | Width, railing height, depth, baluster spacing |
+
+Repeated uprights and floor borders define the modules. Diagonal braces connect overhangs to the floor below, with their drop adjusted to the overhang length. Each detail has a separate toggle.
+
+## Custom feature: automatic terraces
+
+My main addition is a terrace system that responds to the building's shape. It subtracts the upper floor's footprint from the lower one to find exposed roof areas, then adds timber decking and railings along the open edges. Shared edges and edges against walls receive no railing. Where enough deck space exists outside a façade bay, the tool places a terrace door.
+
+Moving or resizing a floor updates the deck, railing boundaries, door placement and overhang supports together.
+
+![Generated terrace, access doors and timber details](images/detail.png)
+
+## Two variations, one tool
+
+The four-storey version emphasizes alternating bays; the five-storey version uses stronger setbacks and offsets for larger terraces. Both use the same HDA and components, with different parameter values.
+
+![Five-storey stepped variation generated with the same HDA](images/stepped.png)
 
 ## Extra Credit
-Take some time to make your building demo-reel worthy, and render it with materials, a background, and lighting!
 
-## Submission
-Update your README with 
-A description of your project 
-A video of your building tool in action 
-Create a pull request to this repository 
-Submit your Houdini file to Canvas along with a link to your pull request 
-IMPORTANT NOTE: make sure your HDA is either embedded in the HIP file or included with your submission (see the instructions under “Part 1: Box Stacking HDA” for additional details).
+The three images above are Karma renders with procedural wood grain, glass and metal materials. A warm sun, soft environment light and a neutral ground plane frame the building; planters, terrace furniture and a bench give the scene a residential scale.
+
+## Open the project
+
+Open [hw04.hipnc](hw04.hipnc) in Houdini Apprentice 22.0 and select `/obj/TERRACE_WEAVE/BUILDING_GENERATOR`. The **Building**, **Components** and **Details** tabs expose the controls. The HDA and procedural materials are embedded; no external textures or plugins are required.
+
+The base workflow follows [Simon Houdini's procedural building tutorial](https://www.youtube.com/watch?v=uIe97023sDk). Architecture and photograph credits are listed in [REFERENCES.md](REFERENCES.md).
