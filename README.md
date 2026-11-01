@@ -1,5 +1,40 @@
 # CIS 5660 HW04 Procedural Buildings
 
+I made a Houdini HDA for stylized medieval houses. The same tool generates both the taller three-story house and the longer two-story house shown below.
+
+<!-- Building Image -->
+<img width="1280" height="720" alt="building" src="https://github.com/user-attachments/assets/8a747457-bae7-4f4c-95de-14af27306c10" />
+
+<!-- Tool Demo -->
+https://github.com/user-attachments/assets/05404f56-3dd2-4b6d-b612-2288d4e8dd51
+
+### Tool Controls
+
+- **Building:** floor count, each floor's width/height/depth, and independent X/Z offsets.
+- **Roof:** adjustable height; the roof automatically fits the top floor.
+- **Doors:** width, height, and plank count.
+- **Windows:** width, height, and a shutter toggle.
+- **Balconies:** width, railing height, and platform depth.
+- **Layout:** a random seed changes the window and balcony distribution on upper floors, while the entrance stays on the ground floor.
+
+For **Part 5**, I added the per-floor X/Z offsets to create slightly shifted upper floors and overhangs. The facade details move with their floor, and the supports update accordingly.
+
+For the **extra credit**, I rendered the houses in Karma with MaterialX materials, warm window emission, a ground background, and area/environment lighting. The HDA is embedded in `hw04.hipnc`.
+
+### References
+
+I focused on the doors, windows, balconies, wooden beams, and posts. To keep the project manageable, I used a single gable roof and left out intersecting roofs, chimneys, and small decorative props.
+
+**Reference 1:** [Stylized Market Town Medieval Building by 3D Tudor](https://blenderartists.org/t/blender-4-stylized-market-town-medieval-building-3d-model/1492321).
+
+<!-- Reference 1 Image -->
+<img width="1035" height="582" alt="building1" src="https://github.com/user-attachments/assets/a45c06ca-3b71-4138-b623-63e7f72f0b24" />
+
+**Reference 2:** [House 7 of Market Town part 2](https://www.kickstarter.com/projects/creatorofthestl/market-town-part-2-28-mm-stl).
+
+<!-- Reference 2 Image -->
+<img width="1009" height="565" alt="building2" src="https://github.com/user-attachments/assets/4ea18f96-5729-4d82-820b-68ba513f63ab" />
+
 ## Project Overview
 In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
 
