@@ -1,53 +1,107 @@
-# CIS 5660 HW04 Procedural Buildings
+# HW 4 - Procedural Buildings
 
-## Project Overview
-In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
+![street](render/street.png)
 
-## Part 0: Setup and Planning 
-### SideFX Labs 
-If you didn't install SideFX Labs during lab 06, make sure you do so for this homework. You can do so at the “Labs/Packages” tab of the Houdini Launcher. Make sure that the version of Labs that you install is not newer than your overall Houdini install (e.g. if you have Houdini 21.544, don't install Labs 22.650). Use the Production version of Labs, not the Daily.
+**Tool in action:** [Screenshots/tool_demo.mp4](Screenshots/tool_demo.mp4) (full Houdini window, 36 s)
 
-### Project Planning
-Before implementing any Houdini nodes or VEX code, take some time to look at different architectural styles (realistic or fictional). Decide on two different buildings that use the architectural style you chose, and add to this README concept art or photographs of your chosen buildings, citing your sources. You will be using the techniques you practiced in Lab 06 to procedurally generate buildings modeled after the ones you selected. Your buildings should be stylistically similar enough that your tool can be used to create either one by modifying its parameters.
+![demo](Screenshots/tool_demo.gif)
 
-Do make sure that what you choose is manageable given your knowledge Houdini and what is taught in the tutorial. Of course, you’re welcome to adapt the setup to support additional logic/features to match your style, and particularly complex additions could merit extra credit :) On the other hand, if you’re newer to Houdini and want to stick relatively close to the tutorial, that’s okay too. Just be sure to think through what changes your chosen buildings will require (additional assets? different placement logic?) before diving into the project so you don’t bite off more than you can chew.  
-Here are a few examples of possible building styles that could be a decent fit for inspiration:
-CIS 5660 HW03 Procedural Building 1 
-https://www.behance.net/gallery/23773965/ISOBuilding-concept-art 
+Scene is `hw04_buildings.hipnc` (Houdini 22.0.466 Apprentice, hence the watermark), submitted on Canvas. The tool is the `timber_house` HDA, **embedded in the hip file**, and every house in the scene is one instance of it with different parameters. I started from my lab 06 building generator. No SideFX Labs nodes.
 
-https://www.artstation.com/artwork/m6xYy 
+## Style: half-timbered houses in Strasbourg
 
-## Part 1: Box Stacking HDA
-As you did in lab 06, follow the tutorial to make a simple HDA that stacks boxes on each other.  Important note about HDA creation:  
-Creating an HDA saves a .hda file at the location you specify with the definition of your HDA. Be sure to submit this .hda file along with your .hip file so we can see the contents of your tool.  
-Alternatively, when you save your HDA you can choose the “Embedded in HIP File” option (rather than specifying the path), and the hda definition will be automatically embedded in your hip file (and no additional files will be needed with submission).  
+| Kammerzell House | Tanners' House (Maison des Tanneurs) |
+|:--:|:--:|
+| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Stra%C3%9Fburg_Maison_Kammerzell_1.jpg/960px-Stra%C3%9Fburg_Maison_Kammerzell_1.jpg" height="420"> | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Maison_des_Tanneurs_front.jpg/960px-Maison_des_Tanneurs_front.jpg" height="420"> |
+| Photo: Zairon, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Stra%C3%9Fburg_Maison_Kammerzell_1.jpg), CC BY-SA 4.0 | Photo: Pedro J Pacheco, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Maison_des_Tanneurs_front.jpg), CC BY-SA 4.0 |
 
-## Part 2: Add Details
-Next, Simon adds details to the boxes to create floors by refining the shape and adding details like windows, doors, and balconies.  
-Create your own models for windows, doors, and balconies based on your chosen style using Houdini. For each of the three types, create a Null “control” node with parameters that affect your window/door/balcony output (similar to how we made a control node for the jellyfish).  
-You should have parameters to drive the width and height of the doors, windows, and balconies, as well as at least one other parameter of your choosing on each one (ex: double vs single doors, windows with and without shutters, and type of balcony railing). Apart from that, you can go as simple or complex as you like!  
-Then follow Simon’s setup to integrate your windows, doors, and balconies into your buildings.  
+What they share, so one tool can do both:
+- stone ground floor, timber-framed floors on top
+- upper floors stick out over the street (jetties) on brackets
+- lots of small-paned windows, flower boxes
+- steep tiled roof, timber frame carrying on into the gable, dormers
 
-## Part 3: Pillars and Border
-Continue following the tutorial to add pillars and borders to each floor. Depending on your chosen style, your building may not make use of pillars. In this case, still use the technique shown to add horizontally-instanced elements of some kind to your building.
+Kammerzell has its gable to the square and three jetties stacked on each other. The Tanners' House turns its long side to the river and has two wooden galleries full of geraniums.
 
-## Part 4: Supports
-Continue following the tutorial to add supports to floors that overhang other floors.  
+Mine, same HDA, different parameters:
 
-## Part 5: Feature of your choice
-Throughout the tutorial, Simon mentions ways you could extend his project setup. Implement any of his suggestions: 
-- More complex logic for creating supports (handle different length supports differently) Add more parameters to the user interface (for example, x and z offset options) UV and shade your models 
-- Add a “manual node” where users can control detail placement manually 
-- Add additional types of feature models (like fire escapes or chimneys). Note that, depending on what you choose, you might need to add new logic to integrate them into your building (ex: chimneys go on top instead of being chained on the side, fire escapes should be on one side of the building and go all the way down). We’ll award more extra credit accordingly.  
-- Add some flair to your scene by dressing together multiple buildings or additional procedural props or background elements 
+| Kammerzell preset | Tanners' preset |
+|:--:|:--:|
+| ![](render/kammerzell.png) | ![](render/tanneurs.png) |
 
-## Extra Credit
-Take some time to make your building demo-reel worthy, and render it with materials, a background, and lighting!
+## The asset
 
-## Submission
-Update your README with 
-A description of your project 
-A video of your building tool in action 
-Create a pull request to this repository 
-Submit your Houdini file to Canvas along with a link to your pull request 
-IMPORTANT NOTE: make sure your HDA is either embedded in the HIP file or included with your submission (see the instructions under “Part 1: Box Stacking HDA” for additional details).
+| | |
+|:--:|:--:|
+| ![](Screenshots/houdini_kammerzell.png) | ![](Screenshots/houdini_tanneurs.png) |
+
+![tabs](Screenshots/parms_tabs.png)
+
+![hda network](Screenshots/network_hda.png)
+
+## Part 1: stacking boxes
+
+Same as lab 06: `Floors` multiparm (tabs), for-each block with fetch feedback + fetch metadata, box size from `ch(strcat("../x", detail(-1, "iteration", 0) + 1))`, Match Size onto the walls of the floors below.
+
+New per floor: `Offset X/Z`, `Stone Walls` and `Balconies` (none / random / gallery). A `floor_info` wrangle reads the current floor's tab into detail attributes, so the subnets don't all have to build parm names.
+
+## Part 2: windows, doors, balconies
+
+All three live in the `assets` subnet. Each model is a detail wrangle that adds one point per part (centre, size, orient, colour, material), then Copy to Points puts a unit box, sphere or tube on each point. Every model also has a cut box (booleaned out of the wall) and a footprint box (how much wall it takes up).
+
+Control nulls: `window_controls`, `door_controls`, `balcony_controls` (plus `timber_controls`, `roof_controls`, `colors`). Their parms are promoted to the asset's tabs.
+
+![nulls](Screenshots/null_controls.png)
+
+| Window | Door | Balcony |
+|---|---|---|
+| width, height | width, height | width, depth, railing height |
+| panes across / down | single or double | balusters / boards / cross braces |
+| shutters, flower box | arched with a stone surround, or square | flower boxes |
+| height on wall, spacing | how often | how often |
+
+![windows](Screenshots/variants_windows.png)
+![doors](Screenshots/variants_doors.png)
+![balconies](Screenshots/variants_balconies.png)
+
+Placement is the lab 06 chain setup (`scatter_assets`):
+- bottom edges of the floor, pulled in from the corners and lifted to window height
+- footprints packed by `id`, Chain set to *Weighted Random from Attribute* (door and balcony frequency are the weights)
+- points get centred on each wall, doors drop to the floor
+- copy models + cut boxes onto the points, boolean the cut boxes out of the wall
+- doors only on the ground floor, balconies only above it, arched doors only in stone walls (timber floors get the square one)
+
+![assets network](Screenshots/network_assets.png)
+
+## Part 3: pillars and borders
+
+- **Pillars**: corner posts on timber floors, quoins on stone floors, copied onto the 4 bottom corners like the lab 06 pillars
+- **Horizontal instancing** is the half-timbering. `frame_members` walks each wall, puts a post on both sides of every opening, fills the gaps with studs (`Stud Spacing`), adds rails under and over the windows and braces in the empty bays (none / diagonal / cross). Diagonals lean towards the middle of the wall.
+- **Borders**: sill and top plates swept around each floor, sandstone plinth and cornice on stone floors
+
+## Part 4: supports
+
+Lab 06 setup: bottom of the floor minus the top of the floor below = the overhang, its outer edges resampled, each point rayed back onto the wall below. Now every point gets a joist, then it depends on the length:
+- short (under `Short Support Limit`): stepped corbel
+- long: knee brace down to the wall below
+
+## Part 5: extras
+
+- **Roof** on the top floor: ridge along X or Z, pitch, overhang. Beaver-tail tiles (every other row shifted half a tile, slightly tipped, random shade), ridge tiles, timber frame and windows in the gables
+- **Chimneys** (count, seed) and **dormers** (per side, each with its own little roof and window)
+- **Galleries**: *Gallery* on a floor runs one long balcony across the front. It shares the railing code with the balcony model: the railing is a compiled block that gets invoked twice
+- **X / Z offset** per floor
+- **Street**: 15 houses on a cobbled street, Kammerzell, Tanners' and variations of my presets
+
+Other networks: [scatter](Screenshots/network_scatter.png), [timber](Screenshots/network_timber.png), [borders](Screenshots/network_borders.png), [supports](Screenshots/network_supports.png), [gallery](Screenshots/network_gallery.png), [roof](Screenshots/network_roof.png)
+
+## Rendering (extra credit)
+
+Karma, principled shaders reading the point colour (glass and iron have their own), a warm sun plus the kiara noon HDRI that ships with Houdini as sky light, sky gradient comped in behind. The ROPs are `karma_street`, `karma_kammerzell` and `karma_tanneurs` in `/out`.
+
+## Things that bit me
+
+- Chain fills each curve from its start, so every wall had its windows bunched at one end. I turn on the curve number output and shift each wall's pieces to the middle.
+- The border sweeps came out inside out. Karma didn't care, the viewport drew them blue. *Reverse Cross Sections* fixed it.
+- Points created in a wrangle can't be read back with `point()` in the same wrangle, so the gable and dormer faces keep their positions in an array.
+- Arched stone doorways looked wrong in timber walls, so timber floors get a second, square door.
