@@ -1,3 +1,16 @@
+<video controls src="20261102-0226-05.4287499.mp4" title="Title"></video>
+
+For the architecture vibe, I went for an abstract floating/spooky vibe because of Halloween. I wanted there to be floating items and details that hover. 
+
+For part 5, I added rotation controls, as well as cool overhanging banners that are placed at random intervals along faces and around the building. They are the floating squares. This gives it an abstract mystique. They are tied to the support code to increase efficiency in generating them because I can generate the banners at the same time as I generate the supports. 
+
+I also added support distortion. I did not wanted the supports to be distorted, so for part 5 I made sure they were not perfectly aligned with rotated buildings. This further supports my abstract spooky vibe. This was a complex addition.
+
+Also for part 5, I added multiple buildings that you can move about, for the credit please please.
+
+For the HDA, I copied the HDA that saved automatically elsewhere into this repository. Sorry if it doesn't work. 
+
+
 # CIS 5660 HW04 Procedural Buildings
 
 ## Project Overview
