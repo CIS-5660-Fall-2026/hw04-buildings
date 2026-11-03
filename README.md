@@ -7,7 +7,8 @@
 
 
 ### Demo Video
-![Project Demo](buildings-demo-compressed.mp4)
+[![Project Demo](buildings-demo-compressed.mp4)](https://github.com/user-attachments/assets/9dd86049-15d8-4eee-8be9-1a421bdaae71
+)
 
 ### Reference Images
 | Reference 1 | Reference 2 | 
