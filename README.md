@@ -4,9 +4,9 @@
 
 ### References: Brutalist Architecture
 
-![](brutalist_balconies.png)
+![](img/brutalist_balconies.png)
 
-![](regenstein_library_facade.png)
+![](img/regenstein_library_facade.png)
 
 ### Results
 
@@ -15,7 +15,7 @@ This project includes a procedural building generator in Houdini with support fo
 - Support beams connecting floors with overhangs to the walls of the preceding floor 
 - Procedural placement of doors, windows, and balconies, with customizable dimensions and frame thickness for all assets
 
-![](render.png)
+![](img/render.png)
 
 
 https://github.com/user-attachments/assets/a97038e1-41ce-49f5-874b-6fb2f317d0be
