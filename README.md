@@ -1,5 +1,13 @@
 # CIS 5660 HW04 Procedural Buildings
 
+For the buildings project, I was inspired by international style architecture prevalent from 1930s to 1970s. For part 5, I implemented better foot print control for each floor with minimum and maximum x/z values, better supports that go down to the ground or down to the next floor, and a random antennae. 
+
+<img src="internationalstylebuilding1.webp" width="400" height="300">
+<img src="internationalstylebuilding2.jpg" width="400" height="300">
+<img src="internalstylebuilding3.jpg" width="400" height="300">
+<img src="result2.png" width="400" height="300">
+<img src="result1.png" width="400" height="300">
+
 ## Project Overview
 In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
 
