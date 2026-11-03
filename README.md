@@ -1,5 +1,23 @@
 # CIS 5660 HW04 Procedural Buildings
 
+## Result
+| Procedural Building | Procedural Building | 
+|------------------------|------------------------|
+|<img src="house1.png"> | <img src="house2.png"> |
+
+
+### Demo Video
+[![Project Demo](buildings-demo-compressed.mp4)](https://github.com/user-attachments/assets/9dd86049-15d8-4eee-8be9-1a421bdaae71
+)
+
+### Reference Images
+| Reference 1 | Reference 2 | 
+|------------------------|------------------------|
+|<img src="ref1.png"> | <img width="400" src="ref2.jpg"> |
+
+### Project Description
+This project handles the procedural creation of a medieval-style building. I modeled the door, windows, and balcony based on this style, while adding parameters to allow the user to adjust the width and height of each asset. The user is also able to adjust more stylized things like the window shutters opening or the style of doorway arch. For the building itself, the user can choose however may floors they want and how big they are, and the assets around the building will fall into place with some randomness. In addition to the base components of the building, I have also created togglable pillars, borders for each floor, and adjustable supports if there is an overhang. Finally, for my extra feature, I added a roof with shingles, where the height and style of the roof can also be changed by the user. 
+
 ## Project Overview
 In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
 
