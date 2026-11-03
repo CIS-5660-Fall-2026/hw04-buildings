@@ -1,3 +1,43 @@
+## References
+
+### Italian Riviera Architecture + Pixar's Luca
+![Reference 1](ref1A.jpg)
+
+![Reference 2](ref1B.jpg)
+
+![Reference 3](ref2.png)
+
+
+## Results
+
+![Result 1](results1.png)
+
+![Result 2](results2.png)
+
+
+
+## Project Description
+
+I wanted to make something simple that's inspired by the Italian Riviera and Pixar's Luca! Here are some details:
+
+- **Windows:** Adjustable width, height, shutter angles, and shutter slats.
+- **Doors:** Adjustable width, height, and optional decorative fanlights.
+- **Balconies:** Adjustable width, depth, and switchable railing styles.
+- **Architectural Details:** Two types of procedural corner stonework, horizontal floor borders, roof tiles, and structural details.
+- **Building Variations:** Different building heights, dimensions, and architectural arrangements.
+- **Other:** Materials for the buildings
+
+I think everything is a bit too straight for now, so next, when I get the chance, I'm planning on extending this a bit so that the buildings themselves have a bit of wonk, as well as adding better materials and shading details.
+
+
+## Video Link
+https://vimeo.com/1242673844/2298b4bf67?share=copy&fl=sv&fe=ci
+
+
+
+
+
+
 # CIS 5660 HW04 Procedural Buildings
 
 ## Project Overview
