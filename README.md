@@ -1,53 +1,49 @@
 # CIS 5660 HW04 Procedural Buildings
 
-## Project Overview
-In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
+## Deco / Offset
 
-## Part 0: Setup and Planning 
-### SideFX Labs 
-If you didn't install SideFX Labs during lab 06, make sure you do so for this homework. You can do so at the “Labs/Packages” tab of the Houdini Launcher. Make sure that the version of Labs that you install is not newer than your overall Houdini install (e.g. if you have Houdini 21.544, don't install Labs 22.650). Use the Production version of Labs, not the Daily.
+Deco / Offset explores how a repeated facade can hold together as the floors behind it change shape and position. Built in Houdini, the tool draws on the Colony and Beacon hotels in Miami Beach, combining pale horizontal trim with teal frames, solid balcony panels and a stepped roof detail.
 
-### Project Planning
-Before implementing any Houdini nodes or VEX code, take some time to look at different architectural styles (realistic or fictional). Decide on two different buildings that use the architectural style you chose, and add to this README concept art or photographs of your chosen buildings, citing your sources. You will be using the techniques you practiced in Lab 06 to procedurally generate buildings modeled after the ones you selected. Your buildings should be stylistically similar enough that your tool can be used to create either one by modifying its parameters.
+![Four-floor Colony-inspired variation rendered in Houdini](renders/colony.png)
 
-Do make sure that what you choose is manageable given your knowledge Houdini and what is taught in the tutorial. Of course, you’re welcome to adapt the setup to support additional logic/features to match your style, and particularly complex additions could merit extra credit :) On the other hand, if you’re newer to Houdini and want to stick relatively close to the tutorial, that’s okay too. Just be sure to think through what changes your chosen buildings will require (additional assets? different placement logic?) before diving into the project so you don’t bite off more than you can chew.  
-Here are a few examples of possible building styles that could be a decent fit for inspiration:
-CIS 5660 HW03 Procedural Building 1 
-https://www.behance.net/gallery/23773965/ISOBuilding-concept-art 
+## Building tool demo
 
-https://www.artstation.com/artwork/m6xYy 
+[Building tool demo](demo/tool_demo.mp4)
 
-## Part 1: Box Stacking HDA
-As you did in lab 06, follow the tutorial to make a simple HDA that stacks boxes on each other.  Important note about HDA creation:  
-Creating an HDA saves a .hda file at the location you specify with the definition of your HDA. Be sure to submit this .hda file along with your .hip file so we can see the contents of your tool.  
-Alternatively, when you save your HDA you can choose the “Embedded in HIP File” option (rather than specifying the path), and the hda definition will be automatically embedded in your hip file (and no additional files will be needed with submission).  
+## Architectural direction
 
-## Part 2: Add Details
-Next, Simon adds details to the boxes to create floors by refining the shape and adding details like windows, doors, and balconies.  
-Create your own models for windows, doors, and balconies based on your chosen style using Houdini. For each of the three types, create a Null “control” node with parameters that affect your window/door/balcony output (similar to how we made a control node for the jellyfish).  
-You should have parameters to drive the width and height of the doors, windows, and balconies, as well as at least one other parameter of your choosing on each one (ex: double vs single doors, windows with and without shutters, and type of balcony railing). Apart from that, you can go as simple or complex as you like!  
-Then follow Simon’s setup to integrate your windows, doors, and balconies into your buildings.  
+| Colony Hotel — Miami Beach                                   | Beacon Hotel — Miami Beach                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![Colony Hotel facade illustration](references/colony.png)   | ![Beacon Hotel historic facade photograph](references/beacon.webp) |
+| [Architectural description — Miami Design Preservation League](https://mdpl.org/building/colony-hotel/) · [Illustration source — Colony Hotel](https://www.colonymiami.com/) | [Photograph source — Beacon Hotel](https://beaconsouthbeach.com/) · Historic American Buildings Survey / Library of Congress |
 
-## Part 3: Pillars and Border
-Continue following the tutorial to add pillars and borders to each floor. Depending on your chosen style, your building may not make use of pillars. In this case, still use the technique shown to add horizontally-instanced elements of some kind to your building.
+I used the Colony's long facade bands and projecting window shades to guide the horizontal details, while its vertical sign informed the rooftop accent. The Beacon offered another example of how repeated windows and small surface details give a simple building volume a recognizable character.
 
-## Part 4: Supports
-Continue following the tutorial to add supports to floors that overhang other floors.  
+## Building and facade controls
 
-## Part 5: Feature of your choice
-Throughout the tutorial, Simon mentions ways you could extend his project setup. Implement any of his suggestions: 
-- More complex logic for creating supports (handle different length supports differently) Add more parameters to the user interface (for example, x and z offset options) UV and shade your models 
-- Add a “manual node” where users can control detail placement manually 
-- Add additional types of feature models (like fire escapes or chimneys). Note that, depending on what you choose, you might need to add new logic to integrate them into your building (ex: chimneys go on top instead of being chained on the side, fire escapes should be on one side of the building and go all the way down). We’ll award more extra credit accordingly.  
-- Add some flair to your scene by dressing together multiple buildings or additional procedural props or background elements 
+A floor multiparm controls each level’s dimensions and X/Z position. A feedback loop stacks the floors and updates their heights automatically.
 
-## Extra Credit
-Take some time to make your building demo-reel worthy, and render it with materials, a background, and lighting!
+Custom windows, doors and balconies are placed using Chain and Copy to Points. Shared IDs match each model to its Boolean cutter. Spacing, repeating patterns and seeded random layouts are adjustable.
 
-## Submission
-Update your README with 
-A description of your project 
-A video of your building tool in action 
-Create a pull request to this repository 
-Submit your Houdini file to Canvas along with a link to your pull request 
-IMPORTANT NOTE: make sure your HDA is either embedded in the HIP file or included with your submission (see the instructions under “Part 1: Box Stacking HDA” for additional details).
+| Component | Null controller   | Controls                        |
+| --------- | ----------------- | ------------------------------- |
+| Window    | `WINDOW_CONTROL`  | Width, height, frame depth      |
+| Door      | `DOOR_CONTROL`    | Width, height, frame depth      |
+| Balcony   | `BALCONY_CONTROL` | Width, height, projection depth |
+
+Window and door openings follow their model dimensions. Pillars, floor borders and roof details have separate toggles.
+
+## Materials and setting
+
+Peach stucco, terrazzo trim, teal mosaic balconies and brass details define the facade. Planters, rooftop lettering, tiled paving and benches add detail, while palms, a shoreline and a road create the coastal setting.
+
+Procedural texture maps are embedded in the HDA. World-aligned UVs maintain consistent texture scale as the building changes size.
+
+![Mosaic balconies, brass details and textured facade](renders/detail.png)
+
+## Floor offsets and supports
+
+Each floor has an independent, absolute X/Z offset. Its facade, slabs and pillars follow its position, while the roof follows the top floor.
+
+The tool compares adjacent footprints and adds diagonal braces beneath overhangs. Brace spacing and visibility are adjustable, and their drop responds to the overhang length and lower floor height. Supports are generated after stacking so they do not affect floor placement.
+
