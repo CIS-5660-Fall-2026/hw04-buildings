@@ -3,6 +3,28 @@
 ## Project Overview
 In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
 
+## Luke Kwon
+
+### Reference and Result
+
+<img width="1280" height="853" alt="en9YTFSd2-W32Y4aYnouZ785E-Nn43J4NebeUROXMaeyKafYCE53Ep-yXCAAEfIZOtFLqDGVUyU-ZT5W1fwYaO4LyBJjU-5JpP9RUu-BHHutBhCt3R22OO6DPckZY8w6XCmiS4fpgp1nE2PBDTgAUC63wLrXRqriN2WBxBSvNfFBm7LlarpkPjuDT58wsqNd" src="https://github.com/user-attachments/assets/fe90a615-65d0-43b7-8529-97900d8b5dbd" />
+
+<img width="1842" height="1322" alt="a31bc628-1bc4-4d32-b8db-aa9b7f27fa59" src="https://github.com/user-attachments/assets/111cd144-9f79-49a1-8bcd-e00942d3004e" />
+
+## Demo
+
+https://github.com/user-attachments/assets/9669824b-00d1-42e1-ba8d-4e3e95745f0d
+
+### Features
+
+- Procedural building HDA with an adjustable floor count.
+- Per-floor controls for width, height, depth, and X/Z offsets.
+- Custom window, door, and balcony models, each with a control Null
+- Procedural placement of windows and door–balcony combinations along building walls.
+- Procedural pillars and floor borders.
+- Supports beneath overhanging floors.
+
+
 ## Part 0: Setup and Planning 
 ### SideFX Labs 
 If you didn't install SideFX Labs during lab 06, make sure you do so for this homework. You can do so at the “Labs/Packages” tab of the Houdini Launcher. Make sure that the version of Labs that you install is not newer than your overall Houdini install (e.g. if you have Houdini 21.544, don't install Labs 22.650). Use the Production version of Labs, not the Daily.
