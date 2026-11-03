@@ -1,3 +1,51 @@
+## Zhiyao Luo's Results
+
+### Demo Video
+
+
+**Name:** Zhiyao Luo  
+**PennKey:** leoluozy  
+
+### Final Result
+
+![Final Render](result/render.png)
+*Five building variations*
+
+![Close-up](result/result2.png)
+*Close-up support view*
+
+![Result](result/result3.png)
+*Yellow building*
+
+![Result](result/result4.png)
+*Orange  building*
+
+### Reference
+
+![Reference 1:](result/ref1.png)
+*Reference 1: Yellow building*
+
+![Reference 2:](result/ref2.png)
+*Reference 2: Orange brick building*
+
+**Source:** Overwatch 2, Paraíso.  
+Screenshots from [Simon Houdini's Procedural Building Tutorial](https://www.youtube.com/watch?v=uIe97023sDk).
+
+
+### Description
+In this assignment, I created a procedural building generator in Houdini based on stylized residential buildings. I followed the box-stacking tutorial and created windows, doors, balconies, pillars, borders, and supports. I added HDA parameters to control floor dimensions, offsets, colors, and the random layout of building details. I used the same HDA to generate five different buildings and rendered them with materials, lighting, and a background.
+
+
+**Part 5: Additional Features**
+
+I added HDA parameters to control floor dimensions, X and Z offsets, wall and border colors, pillar thickness, border details, and random layout seeds. I also used the same HDA to generate five different building variations.
+
+**Extra Credit**
+
+I created a MaterialX shader using 3D noise, HSV adjustment, and color mixing to add subtle color variation to the buildings. I also added a ground plane, environment lighting, and sunlight, and rendered the final scene using Karma.
+
+
+
 # CIS 5660 HW04 Procedural Buildings
 
 ## Project Overview
