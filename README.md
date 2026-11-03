@@ -1,8 +1,5 @@
 # CIS 5660 HW04 Procedural Buildings
 
-## Project Overview
-In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
-
 ## Luke Kwon
 
 ### Reference and Result
@@ -11,7 +8,7 @@ In this homework, you will continue creating procedural buildings based on the w
 
 <img width="1842" height="1322" alt="a31bc628-1bc4-4d32-b8db-aa9b7f27fa59" src="https://github.com/user-attachments/assets/111cd144-9f79-49a1-8bcd-e00942d3004e" />
 
-## Demo
+### Demo
 
 https://github.com/user-attachments/assets/9669824b-00d1-42e1-ba8d-4e3e95745f0d
 
@@ -24,6 +21,8 @@ https://github.com/user-attachments/assets/9669824b-00d1-42e1-ba8d-4e3e95745f0d
 - Procedural pillars and floor borders.
 - Supports beneath overhanging floors.
 
+## Project Overview
+In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
 
 ## Part 0: Setup and Planning 
 ### SideFX Labs 
