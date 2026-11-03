@@ -1,5 +1,7 @@
 # CIS 5660 HW04 Procedural Buildings
 
+Zachary Leong
+
 ## Project Overview
 In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
 
