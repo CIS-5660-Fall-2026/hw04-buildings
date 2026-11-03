@@ -1,3 +1,26 @@
+# Bryan Chung - HW 4: Buildings
+
+## Final
+[Link to demo video](https://www.youtube.com/watch?v=ACQ0Exhe1zA)
+
+<img width="670" height="575" alt="image" src="https://github.com/user-attachments/assets/a99d3532-8a0b-482b-83bd-d189b7e02fd2" />
+<br><br>
+
+Includes:
+- Custom window assets of different shapes and grid sizes
+- Text signs placed as wall decorations
+- Pillars and borders, if pillars are enabled they replace the entire floor to better match the warehouse style
+- Floor supports matching pillar style
+- Scene with multiple buildings
+
+## References
+<img width="506" height="338" alt="image" src="https://github.com/user-attachments/assets/2f5f551c-e862-4fff-944e-8fa06195419e" />
+<img width="788" height="401" alt="image" src="https://github.com/user-attachments/assets/f7948a50-500c-411c-b9d5-b7b3a845d1dc" />
+
+
+
+---
+
 # CIS 5660 HW04 Procedural Buildings
 
 ## Project Overview
