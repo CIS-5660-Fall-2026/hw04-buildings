@@ -1,5 +1,28 @@
 # CIS 5660 HW04 Procedural Buildings
 
+## Nathan Chortek Submission
+
+### References: Brutalist Architecture
+
+![](brutalist_balconies.png)
+
+![](regenstein_library_facade.png)
+
+### Results
+
+This project includes a procedural building generator in Houdini with support for the following features:
+- Stacking floors with customizable dimensions and offsets, plus optional pillars placed along the vertical corner edges
+- Support beams connecting floors with overhangs to the walls of the preceding floor 
+- Procedural placement of doors, windows, and balconies, with customizable dimensions and frame thickness for all assets
+
+![](render.png)
+
+
+https://github.com/user-attachments/assets/a97038e1-41ce-49f5-874b-6fb2f317d0be
+
+
+https://github.com/user-attachments/assets/0b773f39-e9ac-4f55-b2e8-98392f4852ac
+
 ## Project Overview
 In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
 
