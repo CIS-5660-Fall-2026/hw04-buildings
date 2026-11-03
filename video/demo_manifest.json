@@ -1,0 +1,218 @@
+[
+  {
+    "frame": "000.png",
+    "duration": 3,
+    "title": "NORTH / RESIDENCES \u2014 CIS 5660 HW04",
+    "parameters": [
+      "One embedded HDA | A: 4 floors | B: 6 floors",
+      "Original parameterized assets / swept borders / automatic supports"
+    ]
+  },
+  {
+    "frame": "001.png",
+    "duration": 1.6,
+    "title": "01 / FLOOR STACK",
+    "parameters": [
+      "Floors = 2 | per-floor dimensions remain editable",
+      "Feedback + Match Size + procedural facade placement"
+    ]
+  },
+  {
+    "frame": "002.png",
+    "duration": 1.6,
+    "title": "01 / FLOOR STACK",
+    "parameters": [
+      "Floors = 3 | per-floor dimensions remain editable",
+      "Feedback + Match Size + procedural facade placement"
+    ]
+  },
+  {
+    "frame": "003.png",
+    "duration": 1.6,
+    "title": "01 / FLOOR STACK",
+    "parameters": [
+      "Floors = 4 | per-floor dimensions remain editable",
+      "Feedback + Match Size + procedural facade placement"
+    ]
+  },
+  {
+    "frame": "004.png",
+    "duration": 2,
+    "title": "02 / WINDOW_CTRL",
+    "parameters": [
+      "Width = 2.15 | Height = 2.25 | Mullions = 1",
+      "Null channels drive frame, glazing and mullion geometry"
+    ]
+  },
+  {
+    "frame": "005.png",
+    "duration": 2,
+    "title": "02 / WINDOW_CTRL",
+    "parameters": [
+      "Width = 2.90 | Height = 2.50 | Mullions = 3",
+      "Null channels drive frame, glazing and mullion geometry"
+    ]
+  },
+  {
+    "frame": "006.png",
+    "duration": 2,
+    "title": "02 / WINDOW_CTRL",
+    "parameters": [
+      "Width = 1.70 | Height = 1.90 | Mullions = 0",
+      "Null channels drive frame, glazing and mullion geometry"
+    ]
+  },
+  {
+    "frame": "007.png",
+    "duration": 2,
+    "title": "03 / DOOR_CTRL",
+    "parameters": [
+      "Width = 1.65 | Height = 2.65 | Double = 1",
+      "The door model and its Boolean cutter share these dimensions"
+    ]
+  },
+  {
+    "frame": "008.png",
+    "duration": 2,
+    "title": "03 / DOOR_CTRL",
+    "parameters": [
+      "Width = 1.25 | Height = 2.45 | Double = 0",
+      "The door model and its Boolean cutter share these dimensions"
+    ]
+  },
+  {
+    "frame": "009.png",
+    "duration": 2,
+    "title": "03 / DOOR_CTRL",
+    "parameters": [
+      "Width = 2.00 | Height = 2.85 | Double = 1",
+      "The door model and its Boolean cutter share these dimensions"
+    ]
+  },
+  {
+    "frame": "010.png",
+    "duration": 2,
+    "title": "04 / BALCONY_CTRL",
+    "parameters": [
+      "Width = 2.70 | Height = 1.05 | Depth = 1.20",
+      "Railing = vertical | deck + posts + rails"
+    ]
+  },
+  {
+    "frame": "011.png",
+    "duration": 2,
+    "title": "04 / BALCONY_CTRL",
+    "parameters": [
+      "Width = 3.30 | Height = 1.20 | Depth = 1.65",
+      "Railing = vertical | deck + posts + rails"
+    ]
+  },
+  {
+    "frame": "012.png",
+    "duration": 2,
+    "title": "04 / BALCONY_CTRL",
+    "parameters": [
+      "Width = 3.30 | Height = 1.20 | Depth = 1.65",
+      "Railing = horizontal | deck + posts + rails"
+    ]
+  },
+  {
+    "frame": "013.png",
+    "duration": 2,
+    "title": "05 / FLOOR DETAILS",
+    "parameters": [
+      "Floor 2: Columns = 0 | Balconies = 0",
+      "Borders are swept along each floor outline"
+    ]
+  },
+  {
+    "frame": "014.png",
+    "duration": 2,
+    "title": "05 / FLOOR DETAILS",
+    "parameters": [
+      "Floor 2: Columns = 1 | Balconies = 1",
+      "Borders are swept along each floor outline"
+    ]
+  },
+  {
+    "frame": "015.png",
+    "duration": 1.5,
+    "title": "06 / AUTOMATIC OVERHANG SUPPORTS",
+    "parameters": [
+      "Floor 3 X offset = 0.00 m | Support faces = 0",
+      "Boolean region / resampled outline / Ray connection / Sweep"
+    ]
+  },
+  {
+    "frame": "016.png",
+    "duration": 1.5,
+    "title": "06 / AUTOMATIC OVERHANG SUPPORTS",
+    "parameters": [
+      "Floor 3 X offset = 0.70 m | Support faces = 136",
+      "Boolean region / resampled outline / Ray connection / Sweep"
+    ]
+  },
+  {
+    "frame": "017.png",
+    "duration": 1.5,
+    "title": "06 / AUTOMATIC OVERHANG SUPPORTS",
+    "parameters": [
+      "Floor 3 X offset = 1.40 m | Support faces = 136",
+      "Boolean region / resampled outline / Ray connection / Sweep"
+    ]
+  },
+  {
+    "frame": "018.png",
+    "duration": 1.5,
+    "title": "06 / AUTOMATIC OVERHANG SUPPORTS",
+    "parameters": [
+      "Floor 3 X offset = 2.10 m | Support faces = 170",
+      "Boolean region / resampled outline / Ray connection / Sweep"
+    ]
+  },
+  {
+    "frame": "019.png",
+    "duration": 2,
+    "title": "07 / SUPPORT TOGGLE",
+    "parameters": [
+      "Floor 3 X offset = 2.10 m | Supports enabled = 0",
+      "Visible brackets connect the projecting floor to the floor below"
+    ]
+  },
+  {
+    "frame": "020.png",
+    "duration": 2,
+    "title": "07 / SUPPORT TOGGLE",
+    "parameters": [
+      "Floor 3 X offset = 2.10 m | Supports enabled = 1",
+      "Visible brackets connect the projecting floor to the floor below"
+    ]
+  },
+  {
+    "frame": "021.png",
+    "duration": 2,
+    "title": "08 / REMOVE THE OVERHANG",
+    "parameters": [
+      "Floor 3 X offset = 0.00 m | footprints aligned",
+      "Supports disappear when the overhang is removed"
+    ]
+  },
+  {
+    "frame": "022.png",
+    "duration": 2,
+    "title": "09 / REPEATABLE VARIATION",
+    "parameters": [
+      "Window seed = 91 | Floors = 4",
+      "The layout remains procedural when the pattern seed changes"
+    ]
+  },
+  {
+    "frame": "023.png",
+    "duration": 3,
+    "title": "NORTH / RESIDENCES \u2014 TWO PRESETS, ONE TOOL",
+    "parameters": [
+      "A / Terraces     +     B / Shift",
+      "Houdini 21.0.512 Apprentice | HDA and Labs definition embedded"
+    ]
+  }
+]

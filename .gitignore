@@ -1,0 +1,8 @@
+backup/
+*.mantra_checkpoint
+*.ifd
+*.hipnc~
+__pycache__/
+video/frames/
+video/frames.txt
+hw04_debug.hipnc

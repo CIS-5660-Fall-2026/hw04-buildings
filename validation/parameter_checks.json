@@ -1,0 +1,161 @@
+{
+  "houdini": "21.0.512",
+  "labs_loaded_before_open": [],
+  "cases": [
+    {
+      "case": "preset_A",
+      "passed": true,
+      "floors": 4,
+      "panes": 38,
+      "balconies": 7,
+      "support_primitives": 0,
+      "primitives": 3374,
+      "height": 15.33,
+      "pattern": "4dba4a188d0c9c536b94501265af67ee2d95cb684648b96683a867bd292f8e6b"
+    },
+    {
+      "case": "preset_B",
+      "passed": true,
+      "floors": 6,
+      "panes": 48,
+      "balconies": 10,
+      "support_primitives": 748,
+      "primitives": 4496,
+      "height": 22.53,
+      "pattern": "1ab4fa0171c5db6835a77612db5815d8c4bb217241cb7c7fb6e122e53ecd63fc"
+    },
+    {
+      "case": "window_Null_and_instance_independence",
+      "passed": true,
+      "floors": 4,
+      "panes": 36,
+      "balconies": 6,
+      "support_primitives": 0,
+      "primitives": 3434,
+      "height": 15.33,
+      "pattern": "18fafb068b8487bd13839e9eabba64f319ec615213d92596dd68fe621ed4f02e"
+    },
+    {
+      "case": "door_Null_width_height_single_double",
+      "passed": true,
+      "floors": 4,
+      "panes": 38,
+      "balconies": 7,
+      "support_primitives": 0,
+      "primitives": 3374,
+      "height": 15.33,
+      "pattern": "6520748b207e40067b5419ee4c5ed2608a03219cec45df3daca0fbdc3410d15f"
+    },
+    {
+      "case": "balcony_Null_dimensions_and_railing_style",
+      "passed": true,
+      "floors": 4,
+      "panes": 36,
+      "balconies": 6,
+      "support_primitives": 0,
+      "primitives": 2474,
+      "height": 15.33,
+      "pattern": "13500143f832f2025ff2d297556373985eee4afb0302c8a8022cc7bc0e8ca155"
+    },
+    {
+      "case": "different_seed",
+      "passed": true,
+      "floors": 4,
+      "panes": 38,
+      "balconies": 7,
+      "support_primitives": 0,
+      "primitives": 3374,
+      "height": 15.33,
+      "pattern": "27fbbf0fb48e21f3ff766c5e9842d06467c6b6b2388923b30d055260be90128b"
+    },
+    {
+      "case": "seed_repeatability",
+      "passed": true,
+      "floors": 4,
+      "panes": 38,
+      "balconies": 7,
+      "support_primitives": 0,
+      "primitives": 3374,
+      "height": 15.33,
+      "pattern": "4dba4a188d0c9c536b94501265af67ee2d95cb684648b96683a867bd292f8e6b"
+    },
+    {
+      "case": "per_floor_balcony_and_column_toggles",
+      "passed": true,
+      "floors": 4,
+      "panes": 38,
+      "balconies": 5,
+      "support_primitives": 0,
+      "primitives": 2942,
+      "height": 15.33,
+      "pattern": "cc1b8cd61b8384727532360b6a57eae5a30de23d5231dc74bee3046fa49459c4"
+    },
+    {
+      "case": "supports_disabled",
+      "passed": true,
+      "floors": 6,
+      "panes": 48,
+      "balconies": 10,
+      "support_primitives": 0,
+      "primitives": 3748,
+      "height": 22.53,
+      "pattern": "1ab4fa0171c5db6835a77612db5815d8c4bb217241cb7c7fb6e122e53ecd63fc"
+    },
+    {
+      "case": "aligned_floors_no_supports",
+      "passed": true,
+      "floors": 6,
+      "panes": 48,
+      "balconies": 10,
+      "support_primitives": 0,
+      "primitives": 3748,
+      "height": 22.53,
+      "pattern": "50ddcccc8b7e3ae1a1cb333606a52a000710884d4d3b263a19e7571c3ed8cf80"
+    },
+    {
+      "case": "offset_creates_supports",
+      "passed": true,
+      "floors": 6,
+      "panes": 48,
+      "balconies": 10,
+      "support_primitives": 340,
+      "primitives": 4088,
+      "height": 22.53,
+      "pattern": "2435d611e365435692e774b5127e411305b08aeb57df984577b36a323a27036e"
+    },
+    {
+      "case": "removing_offset_removes_supports",
+      "passed": true,
+      "floors": 6,
+      "panes": 48,
+      "balconies": 10,
+      "support_primitives": 0,
+      "primitives": 3748,
+      "height": 22.53,
+      "pattern": "50ddcccc8b7e3ae1a1cb333606a52a000710884d4d3b263a19e7571c3ed8cf80"
+    },
+    {
+      "case": "single_floor",
+      "passed": true,
+      "floors": 1,
+      "panes": 8,
+      "balconies": 0,
+      "support_primitives": 0,
+      "primitives": 518,
+      "height": 4.529999999999999,
+      "pattern": "cfa07c7d4f68b74c68198275eff0be44b87d9b0d2ea0147cd6114a86b0534754"
+    },
+    {
+      "case": "seven_floors",
+      "passed": true,
+      "floors": 7,
+      "panes": 68,
+      "balconies": 15,
+      "support_primitives": 680,
+      "primitives": 5938,
+      "height": 24.929999999999996,
+      "pattern": "7f087c31d910bc5b96a19643954355884b714179f75e437b84685c859031bc2a"
+    }
+  ],
+  "passed": true
+}
