@@ -12,6 +12,14 @@ A procedural building system that combines independently sized floors with varie
 
 The project explores a dense residential building style with projecting balconies, protective window cages, exposed utilities, and vertical signs. A shared set of adjustable components supports different floor arrangements and facade proportions.
 
+### Architectural References
+
+| Dense Facades and Projecting Signs | Caged Balconies and Exterior Equipment |
+| --- | --- |
+| ![Dense facades and projecting signs](media/references/dense_facade_reference.jpeg) | ![Caged balconies and exterior equipment](media/references/caged_balconies_reference.webp) |
+| The closely packed facade modules and projecting signs inform the building's dense layout and outward-facing billboards. | The enclosed balconies, repeated metal railings, and exterior air conditioners inform the balcony styles, window cages, and attached equipment. |
+| Visible watermark: Xiaohongshu ID `shanzhongtian`. | Image source: [Aesthetics Wiki](https://aesthetics.fandom.com/wiki/File:CDream-1.png). |
+
 ## Part 1: Box Stacking HDA
 
 Each floor has its own width, height, and depth. Its elevation follows the accumulated height of the floors below, allowing changes in footprint to create setbacks and overhangs. Floor count and per-floor dimensions control the overall silhouette.
