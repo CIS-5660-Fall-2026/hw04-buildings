@@ -1,9 +1,20 @@
-
-
-
 # CIS 5660 HW04 Procedural Buildings
 
+<img width="791" height="681" alt="image" src="https://github.com/user-attachments/assets/adf83902-1cd2-494a-a62e-682c2880a6cd" />
 
+See `demo.mp4` for a overview video.
+
+This is a procedural building generator inspired by the architecture of Yerevan, Armenia.
+
+Features:
+- Procedural box stacking HDA for building masses
+- Procedural assets for archways, windows, and balconies (extra feature! these can be customized further)
+- Building trim and overhang support beams
+
+Extra feature:
+
+Reference (Yerevan, Armenia):
+<img width="1109" height="921" alt="image" src="https://github.com/user-attachments/assets/798527b8-0e51-4171-8425-b05243e9bff0" />
 
 
 # Assignment
