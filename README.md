@@ -11,8 +11,6 @@ Features:
 - Procedural assets for archways, windows, and balconies (extra feature! these can be customized further)
 - Building trim and overhang support beams
 
-Extra feature:
-
 Reference (Yerevan, Armenia):
 <img width="1109" height="921" alt="image" src="https://github.com/user-attachments/assets/798527b8-0e51-4171-8425-b05243e9bff0" />
 
