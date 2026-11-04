@@ -1,5 +1,28 @@
 # CIS 5660 HW04 Procedural Buildings
 
+## References
+
+![poorSadGenshin](images/poorinazuma.png)
+
+<video width="800" controls>
+  <source src="images/demo.mp4" type="video/mp4">
+</video>
+
+I took inspiration from the Inazuma buildings found in Genshin Impact
+
+![Inazuma](images/Inazuma.jpg)
+
+Rather than attempt to recreate everything in the region, I focused on one building model and attempted to replicate a structure similar to it that we could procedurally modify. 
+
+![Building](images/inazumaB.jpg)
+
+I also didn't like the door that was shown there, so I referenced this one instead.
+
+![door](images/doorreference.webp)
+
+
+
+
 ## Project Overview
 In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
 
