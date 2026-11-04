@@ -1,53 +1,183 @@
-# CIS 5660 HW04 Procedural Buildings
+# Procedural Building
 
-## Project Overview
-In this homework, you will continue creating procedural buildings based on the work you did in lab 06. The tutorial used for that lab and this homework can be found at [this URL](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
+**Procedural Controls Demo**
 
-## Part 0: Setup and Planning 
-### SideFX Labs 
-If you didn't install SideFX Labs during lab 06, make sure you do so for this homework. You can do so at the “Labs/Packages” tab of the Houdini Launcher. Make sure that the version of Labs that you install is not newer than your overall Houdini install (e.g. if you have Houdini 21.544, don't install Labs 22.650). Use the Production version of Labs, not the Daily.
+![Procedural controls demonstration](media/video/building_controls_demo.gif)
 
-### Project Planning
-Before implementing any Houdini nodes or VEX code, take some time to look at different architectural styles (realistic or fictional). Decide on two different buildings that use the architectural style you chose, and add to this README concept art or photographs of your chosen buildings, citing your sources. You will be using the techniques you practiced in Lab 06 to procedurally generate buildings modeled after the ones you selected. Your buildings should be stylistically similar enough that your tool can be used to create either one by modifying its parameters.
+**Rendered Overview**
 
-Do make sure that what you choose is manageable given your knowledge Houdini and what is taught in the tutorial. Of course, you’re welcome to adapt the setup to support additional logic/features to match your style, and particularly complex additions could merit extra credit :) On the other hand, if you’re newer to Houdini and want to stick relatively close to the tutorial, that’s okay too. Just be sure to think through what changes your chosen buildings will require (additional assets? different placement logic?) before diving into the project so you don’t bite off more than you can chew.  
-Here are a few examples of possible building styles that could be a decent fit for inspiration:
-CIS 5660 HW03 Procedural Building 1 
-https://www.behance.net/gallery/23773965/ISOBuilding-concept-art 
+[![Building demonstration](media/video/building_demo.gif)](media/video/building_demo.mp4)
 
-https://www.artstation.com/artwork/m6xYy 
+[Watch the video](media/video/building_demo.mp4)
 
-## Part 1: Box Stacking HDA
-As you did in lab 06, follow the tutorial to make a simple HDA that stacks boxes on each other.  Important note about HDA creation:  
-Creating an HDA saves a .hda file at the location you specify with the definition of your HDA. Be sure to submit this .hda file along with your .hip file so we can see the contents of your tool.  
-Alternatively, when you save your HDA you can choose the “Embedded in HIP File” option (rather than specifying the path), and the hda definition will be automatically embedded in your hip file (and no additional files will be needed with submission).  
+A procedural building system that combines independently sized floors with varied facade assets and architectural details. Floor dimensions define the overall form, while layout rules and random seeds control how its components are distributed.
 
-## Part 2: Add Details
-Next, Simon adds details to the boxes to create floors by refining the shape and adding details like windows, doors, and balconies.  
-Create your own models for windows, doors, and balconies based on your chosen style using Houdini. For each of the three types, create a Null “control” node with parameters that affect your window/door/balcony output (similar to how we made a control node for the jellyfish).  
-You should have parameters to drive the width and height of the doors, windows, and balconies, as well as at least one other parameter of your choosing on each one (ex: double vs single doors, windows with and without shutters, and type of balcony railing). Apart from that, you can go as simple or complex as you like!  
-Then follow Simon’s setup to integrate your windows, doors, and balconies into your buildings.  
+## Floor Stack and Building Form
 
-## Part 3: Pillars and Border
-Continue following the tutorial to add pillars and borders to each floor. Depending on your chosen style, your building may not make use of pillars. In this case, still use the technique shown to add horizontally-instanced elements of some kind to your building.
+Each floor has its own width, height, and depth. Its elevation follows the accumulated height of the floors below, allowing changes in footprint to create setbacks and overhangs. Floor count and per-floor dimensions control the overall silhouette.
 
-## Part 4: Supports
-Continue following the tutorial to add supports to floors that overhang other floors.  
+![Complete building](media/overview/building.png)
 
-## Part 5: Feature of your choice
-Throughout the tutorial, Simon mentions ways you could extend his project setup. Implement any of his suggestions: 
-- More complex logic for creating supports (handle different length supports differently) Add more parameters to the user interface (for example, x and z offset options) UV and shade your models 
-- Add a “manual node” where users can control detail placement manually 
-- Add additional types of feature models (like fire escapes or chimneys). Note that, depending on what you choose, you might need to add new logic to integrate them into your building (ex: chimneys go on top instead of being chained on the side, fire escapes should be on one side of the building and go all the way down). We’ll award more extra credit accordingly.  
-- Add some flair to your scene by dressing together multiple buildings or additional procedural props or background elements 
+### Building Variations
 
-## Extra Credit
-Take some time to make your building demo-reel worthy, and render it with materials, a background, and lighting!
+Changing the floor count and individual floor dimensions produces different building forms while retaining the same placement rules. The examples show how setbacks and wider overhangs affect the distribution of facade assets and supports.
 
-## Submission
-Update your README with 
-A description of your project 
-A video of your building tool in action 
-Create a pull request to this repository 
-Submit your Houdini file to Canvas along with a link to your pull request 
-IMPORTANT NOTE: make sure your HDA is either embedded in the HIP file or included with your submission (see the instructions under “Part 1: Box Stacking HDA” for additional details).
+| Original arrangement | Alternate arrangement |
+| --- | --- |
+| ![Original building](media/overview/building.png) | ![Alternate building](media/variants/building_variant_02.png) |
+
+### Alternate Building Views
+
+![Rear view](media/variants/building_variant_02_back.png)
+
+![Side view](media/variants/building_variant_02_side.png)
+
+![Opposite view](media/variants/building_variant_02_high.png)
+
+### Node Screenshot
+
+![Floor stack node network](media/nodes/floor_stack.png)
+
+## Windows
+
+Window groups are generated within a minimum and maximum count range. Each group carries its actual width into the layout process, so increasing the number of windows also increases the space it occupies along the facade.
+
+![Window variations](media/modules/windows.png)
+
+### Window Count
+
+| Narrow window group | Medium window group | Wide window group |
+| --- | --- | --- |
+| ![Narrow window group](media/modules/windows_1.png) | ![Medium window group](media/modules/windows_2.png) | ![Wide window group](media/modules/windows_4.png) |
+
+### Node Screenshot
+
+![Window node network](media/nodes/windows.png)
+
+## Window Cages
+
+The protective cage adapts to the window group's dimensions. A probability parameter determines whether a cage is included, with a floor-based random seed making the choice repeatable across that floor.
+
+![Window cage](media/modules/window_cap.png)
+
+### Node Screenshot
+
+![Window cage node network](media/nodes/window_cap.png)
+
+## Sliding Doors
+
+Door panels fit the balcony's opening, and their positions along the track depend on the enclosure parameter. Each balcony instance receives a randomized enclosure value, creating different opening amounts across the facade.
+
+![Sliding doors](media/modules/sliding_doors.png)
+
+### Door Closure
+
+| Closed doors | Partially open doors | Open doors |
+| --- | --- | --- |
+| ![Closed doors](media/modules/doors_000.png) | ![Partially open doors](media/modules/doors_050.png) | ![Open doors](media/modules/doors_100.png) |
+
+### Node Screenshot
+
+![Sliding door node network](media/nodes/sliding_doors.png)
+
+## Covered Balconies
+
+Covered balconies adapt to the floor height while reserving clearance above. Their opening bounds define both the door's fitted size and the corresponding cutout in the building wall. The dense railings and corrugated cover distinguish this balcony style.
+
+![Covered balcony](media/modules/balcony_1.png)
+
+### Node Screenshot
+
+![Covered balcony node network](media/nodes/balcony_1.png)
+
+## Open Balconies
+
+Open balconies use a lighter railing arrangement. The balcony and its opening remain aligned as dimensions change, keeping the fitted doors and wall cutout consistent with the visible asset.
+
+![Open balcony](media/modules/balcony_2.png)
+
+### Node Screenshot
+
+![Open balcony node network](media/nodes/balcony_2.png)
+
+## Air Conditioners
+
+An imported air-conditioner model is positioned relative to each balcony, so it follows the balcony's placement as part of the assembled asset.
+
+![Air conditioner](media/modules/air_conditioner.png)
+
+### Node Screenshot
+
+![Air conditioner node network](media/nodes/air_conditioner.png)
+
+## Facade Layout and Openings
+
+The layout chooses between balcony styles and window groups using adjustable selection weights. It uses each asset's bounding width and the available wall length to arrange the selected pieces, with spacing and corner checks constraining placement. Window count variants share the overall window weight.
+
+The visible asset and its opening bounds travel together through placement. The bounds then define the wall cutout, keeping the opening aligned with the chosen asset.
+
+![Facade layout and openings](media/modules/layout_boolean.png)
+
+### Node Screenshot
+
+![Facade layout node network](media/nodes/layout_boolean.png)
+
+## Overhang Supports
+
+Candidate positions beneath each floor are projected downward toward the lower floors or ground. The distance to the hit determines the support length, and segments below a minimum length are discarded. The support-width parameter controls both thickness and the inset beneath the floor.
+
+![Overhang supports](media/modules/overhang_supports.png)
+
+### Node Screenshot
+
+![Support node network](media/nodes/overhang_supports.png)
+
+## Electrical Wires
+
+Attachment positions follow the floor perimeter. Corresponding points in a shared cross-section pattern connect into continuous wires, preserving their order around the building. Selected spans curve downward while their attachment points and corner sections remain fixed.
+
+Wire thickness, count range, sagging percentage, sag depth, and variation control the result. A random seed changes the arrangement while keeping it reproducible.
+
+![Electrical wires](media/modules/electrical_wires.png)
+
+### Wire Sagging
+
+| Straight wires | Sagging wires |
+| --- | --- |
+| ![Straight wires](media/modules/wires_000.png) | ![Sagging wires](media/modules/wires_100.png) |
+
+### Node Screenshot
+
+![Electrical wire node network](media/nodes/electrical_wires.png)
+
+## Water Pipes
+
+The assembled floor boundaries provide a connected routing network. A shortest-path search connects selected upper and lower positions, while branches follow floor edges and outlet extensions turn away from the building. Overlapping paths are consolidated before becoming pipes.
+
+Connection collars follow the local path direction. Pipe thickness and collar spacing control their appearance.
+
+![Water pipes](media/modules/water_pipes.png)
+
+### Node Screenshot
+
+![Water pipe node network](media/nodes/water_pipes.png)
+
+## Vertical Billboards
+
+Vertical facade edges provide candidate locations and determine the billboard height. Orientation comes from the horizontal vector between the floor center and the placement position: an axis is selected, and its sign determines which way the billboard extends. The panel's facing direction is adjusted consistently with that outward direction.
+
+![Vertical billboards](media/modules/billboards.png)
+
+### Node Screenshot
+
+![Billboard node network](media/nodes/billboards.png)
+
+## Roof and Railings
+
+The roof outline follows the top floor's footprint. Posts and rails follow its perimeter, and a final-floor condition restricts the additional roof assembly to the top of the building.
+
+![Roof and railings](media/modules/roof_railings.png)
+
+### Node Screenshot
+
+![Roof and railing node network](media/nodes/roof_railings.png)
