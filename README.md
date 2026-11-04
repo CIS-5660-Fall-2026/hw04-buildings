@@ -4,9 +4,7 @@
 
 ![Procedural controls demonstration](media/video/building_controls_demo.gif)
 
-A procedural building system that combines independently sized floors with varied facade assets and architectural details. Floor dimensions define the overall form, while layout rules and random seeds control how its components are distributed.
-
-[Assignment brief](https://github.com/CIS-5660-Fall-2026/hw04-buildings)
+For this project, I wanted to recreate the architectural styles seen in China from the 1980s through the early 2000s. The design is inspired by Chinese dreamcore, an aesthetic used in games and visual art. It evokes the uncanny atmosphere of the Backrooms while drawing on nostalgic environments that many young people in China remember from childhood.
 
 ## Part 0: Setup and Planning
 
@@ -17,8 +15,7 @@ The project explores a dense residential building style with projecting balconie
 | Dense Facades and Projecting Signs | Caged Balconies and Exterior Equipment |
 | --- | --- |
 | ![Dense facades and projecting signs](media/references/dense_facade_reference.jpeg) | ![Caged balconies and exterior equipment](media/references/caged_balconies_reference.webp) |
-| The closely packed facade modules and projecting signs inform the building's dense layout and outward-facing billboards. | The enclosed balconies, repeated metal railings, and exterior air conditioners inform the balcony styles, window cages, and attached equipment. |
-| Visible watermark: Xiaohongshu ID `shanzhongtian`. | Image source: [Aesthetics Wiki](https://aesthetics.fandom.com/wiki/File:CDream-1.png). |
+| The closely packed facade modules and projecting signs inform the building's dense layout and outward-facing billboards. | The enclosed balconies, repeated metal railings, and exterior air conditioners inform the balcony styles, window cages, and attached equipment. | Image source: [Aesthetics Wiki](https://aesthetics.fandom.com/wiki/File:CDream-1.png). |
 
 ## Part 1: Box Stacking HDA
 
