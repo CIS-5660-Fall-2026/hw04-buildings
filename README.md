@@ -1,98 +1,53 @@
-# CIS 5660 HW04 Procedural Buildings
+# CIS 5660 HW04 — NORTH / Residences
 
-## NORTH / Residences
+NORTH / Residences is a procedural apartment-building tool with two presets: a wide four-floor building with setbacks, and a narrower six-floor building with offset floors. Both use pale walls, dark window frames, blue-gray glass and bronze details.
 
-One procedural building tool produces two contemporary apartment studies: **A / Terraces**, a wide four-floor building with a stepped roofline, and **B / Shift**, a narrower six-floor building with projecting volumes and automatic support brackets. Pale walls, charcoal frames, blue-gray glazing and bronze details connect the two designs.
+![Building presets](renders/residences_beauty.png)
 
-![NORTH / Residences — both presets](renders/residences_beauty.png)
+[Houdini scene](hw04_residences.hipnc) · [Parameter demonstration video](video/tool_demo.mp4)
 
-**[Watch the tool demonstration (MP4, 50 seconds)](video/tool_demo.mp4)** · **[Download the Houdini scene](hw04_residences.hipnc)**
+The silent video shows rendered changes to floor count, window and door dimensions, balcony railings, floor offsets and supports. It is a rendered parameter demonstration rather than a Houdini interface recording.
 
-The silent video renders 24 actual parameter states in Houdini: floor count, window dimensions and mullions, door dimensions and single/double leaves, balcony dimensions and railing styles, floor detail toggles, overhang support creation/removal, and random seed variation. Captions report the parameters used for each frame. It is an automated rendered parameter demonstration, not a screen recording of mouse interaction.
+## Using the tool
 
-### Open and use
+Open `hw04_residences.hipnc` in Houdini. The project was made with Houdini 21.0.512 Apprentice. The building HDA and required Labs definition are embedded in the scene; no separate HDA file is needed.
 
-1. Open `hw04_residences.hipnc` in Houdini. Created and checked with **Houdini 21.0.512 Apprentice** and **SideFX Labs 21.0.512 Production**. The `.hipnc` extension and render watermark are from the Apprentice license.
-2. Select `/obj/BUILDING_A/BUILDING_GENERATOR` or `/obj/BUILDING_B/BUILDING_GENERATOR`. Both are instances of the same `cis5660::hw04_residences::1.0` HDA. Use **Load A — Terraces** or **Load B — Shift** to apply the corresponding massing and facade preset.
-3. Change floor count, then edit each floor's width, height, depth, X/Z offsets, columns and balconies. The **Doors / Windows / Balconies** section controls the models and automatic supports. Keep openings smaller than the floor height and footprints large enough to hold a facade bay.
-4. Inside the generator, the original model controls are the Null nodes `WINDOW_CTRL`, `DOOR_CTRL` and `BALCONY_CTRL`. Their channels are linked to the exposed HDA controls. The native modeling networks are under `WINDOW_ASSETS`; the network chapters are labeled for inspection.
-5. Use `/obj/BEAUTY_CAMERA` for the paired view. `/out/PREVIEW` produces the fast preview; `/out/BEAUTY_RENDER` produces the lit render. Output paths use `$HIP/renders`.
+Select `/obj/BUILDING_A/BUILDING_GENERATOR` or `/obj/BUILDING_B/BUILDING_GENERATOR`. The two instances use the same HDA. The **Load A — Terraces** and **Load B — Shift** buttons apply the two presets.
 
-The main building HDA and the required Labs split-normal HDA definition are **embedded in the HIP file**. Opening the scene does not require a separate HDA file or the source scripts. A clean-preferences test opened and cooked the scene with no Labs package loaded beforehand.
+- Floor controls adjust width, height, depth, X/Z offset, columns and balconies.
+- `WINDOW_CTRL` controls window width, height and mullions.
+- `DOOR_CTRL` controls door width, height and single/double leaves.
+- `BALCONY_CTRL` controls balcony width, railing height, depth, spacing and railing style.
 
-### Assignment implementation
+The three Null controllers are inside the building generator, with their parameters exposed on the HDA. Keep openings smaller than their floor height and allow enough facade width for each bay.
 
-| Requirement | Implementation |
-| --- | --- |
-| Part 0 — planning | Two ODA references below, selected and documented before implementation. |
-| Part 1 — box stacking HDA | Lab 06 feedback stack and Match Size workflow, packaged in an embedded HDA with two independent scene instances. |
-| Part 2 — original assets | Native Houdini models for windows, doors and balconies; separate Null controls for each. Windows: width, height, mullions. Doors: width, height, single/double. Balconies: width, railing height, depth, spacing and railing style. Chain-based placement, ID-based asset copies and Boolean wall openings are retained. |
-| Part 3 — pillars and borders | Corner columns and swept profiles following each floor outline, with per-floor column controls. |
-| Part 4 — supports | Compare the current floor underside with the previous structural footprint. Sample the unsupported outline, ray-project connection points onto the previous floor and sweep diagonal brackets. Supports disappear when footprints align and can be disabled globally. |
-| Part 5 — extension | Independent X/Z offsets for every floor; the facade, roof, entrance and supports respond to the altered massing. Preset buttons and per-floor balcony toggles extend the interface. |
-| Presentation | Shared material palette, ground, lighting, camera, two-building render and parameter demonstration video. |
+## Features
 
-The support system targets **axis-aligned rectangular floors with overlapping footprints**. Its brackets are a visual procedural model; disconnected floors and rotated or arbitrary footprints are outside this implementation's scope. Preset A steps inward and has no floor-overhang supports; preset B deliberately includes overhangs that exercise the support network.
+The floor stack extends the Lab 06 feedback and Match Size setup. Windows, doors and balconies are placed along the facade, with Boolean openings in the walls. Columns sit at the floor corners, and swept profiles form the horizontal borders.
 
-### Validation and reproducibility
+Supports are generated where an upper floor extends past the floor below. They disappear when the overhang is removed. Per-floor X/Z offsets are the Part 5 extension. The support logic is designed for overlapping, axis-aligned rectangular floors.
 
-All **14 parameter checks pass**; results are in [the validation report](validation/parameter_checks.json). Checks cover both presets, Null-driven dimensions, independent HDA instances, railing styles, seed changes and repeatability, per-floor toggles, support enable/disable, aligned and shifted footprints, removal of an overhang, and one- and seven-floor stacks. They also check finite geometry, facade placement on all four sides, roof elevation and node errors. [Build diagnostics](validation/build_diagnostics.json) contain no node errors.
+The scene includes materials, lighting, a ground plane and a camera. Use `/obj/BEAUTY_CAMERA` for the paired view and `/out/BEAUTY_RENDER` to render it.
 
-The saved scene is ready to open. To rebuild using Houdini's `hython` executable, run from the repository directory:
+## References
 
-```text
-hython scripts/build_hw04.py --render --beauty
-hython scripts/validate_hw04.py
-hython scripts/render_demo.py
-```
+### A — ODA, 251 1st Street
 
-`source/lab06_base.hipnc` preserves the Lab 06 starting point; `scripts/` contains the reproducible construction, validation and demonstration scripts; `presets.json` records the two preset configurations. The video script uses Houdini's bundled FFmpeg encoder. The embedded Labs definition retains its upstream license in [licenses/SideFXLabs-LICENSE.md](licenses/SideFXLabs-LICENSE.md).
+![251 1st Street](references/251-first.jpg)
 
-## Original design plan and references
+[ODA project page](https://oda-architecture.com/projects/251-1st/). Photography credits listed by ODA: Frank Oudeman and Imagen Subliminal.
 
-Style: contemporary modular apartments with pale concrete, charcoal metal frames,
-blue-gray glazing and warm metal accents. Two presets of one HDA will interpret
-the following buildings at a reduced, course-appropriate scale. These are stylized
-studies of facade rhythm and massing, not exact architectural reconstructions.
+The four-floor preset takes its pale horizontal bands, dark glazing and stepped outdoor spaces from this reference.
 
-### Reference A — ODA, 251 1st Street
+### B — ODA, 2222 Jackson
 
-![251 1st Street reference](references/251-first.jpg)
+![2222 Jackson](references/2222-jackson.jpg)
 
-Source: [ODA project page](https://oda-architecture.com/projects/251-1st/).
-Photography credits listed by ODA: Frank Oudeman and Imagen Subliminal.
-Reference image reproduced here solely for educational visual study; copyright
-remains with its respective owner.
+[ODA project page](https://oda-architecture.com/projects/2222-jackson/). Photography credits listed by ODA: Imagen Subliminal and Pavel Bendov.
 
-Preset A will translate the pale horizontal bands, dark framed glazing and
-terraced outdoor space into a four-floor, wide apartment building with balconies
-and a smaller upper floor.
+The six-floor preset uses offset volumes, projecting floors and metal railings. Its visible support brackets are an adaptation for this project. Both presets are simplified studies of the references rather than exact reconstructions.
 
-### Reference B — ODA, 2222 Jackson
-
-![2222 Jackson reference](references/2222-jackson.jpg)
-
-Source: [ODA project page](https://oda-architecture.com/projects/2222-jackson/).
-Photography credits listed by ODA: Imagen Subliminal and Pavel Bendov.
-Reference image reproduced here solely for educational visual study; copyright
-remains with its respective owner.
-
-Preset B will use six narrower floors, offset and projecting volumes, repeated
-glazed bays and metal railings. Visible support brackets are an intentional
-industrial interpretation added to demonstrate Part 4 of the assignment.
-
-### Planned procedural work
-
-- Retain Lab 06's feedback stack, normal-based walls, Chain placement and ID-based
-  Boolean window/door openings.
-- Build original parameterized windows, doors and balconies with a dedicated
-  Null control node for each type.
-- Sweep border profiles around floor outlines and copy columns at floor corners.
-- Detect actual floor overhangs against the previous structural floor; create
-  supports only where an overhang exists and a lower-floor connection is valid.
-- Add independent X/Z floor offsets as Part 5. Use the same HDA for both presets.
-- Deliver an embedded HDA scene, renders, validation results and a parameter
-  demonstration video.
+Reference photographs are included for educational study and remain the property of their respective owners. The embedded SideFX Labs definition is covered by the [SideFX Labs license](licenses/SideFXLabs-LICENSE.md).
 
 ---
 
