@@ -20,7 +20,7 @@ I also didn't like the door that was shown there, so I referenced this one inste
 
 ![door](images/doorreference.webp)
 
-##Implementation
+## Implementation
 
 I modeled the doors and windows in Houdini and added controls for their width and height, along with a single or double door option. The assets are placed along each wall, and I added logic to center them so the leftover space is more balanced on both sides. Doors are also limited to the first floor.
 
