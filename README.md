@@ -2,11 +2,7 @@
 
 ![poorSadGenshin](images/poorinazuma.png)
 
-
-C:\Users\thoma\OneDrive\Desktop\Classes\CIS5660\hw04-buildings\images\demo.mp4
-<video width="800" controls>
-  <source src="images/demo.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/5838d53c-e47f-4deb-a0cf-e604036477f1
 
 ## References
 
