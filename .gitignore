@@ -1,0 +1,5 @@
+*.hipnc
+*.hip
+backup/
+render/
+.DS_Store
