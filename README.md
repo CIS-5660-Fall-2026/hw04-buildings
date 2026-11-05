@@ -86,9 +86,10 @@ Each floor's primitives carry an `i@floor` attribute, so later steps (windows, b
 
 ### Windows, Doors, Balconies (Part 2)
 
-Windows, doors and balconies are modelled in Houdini and built inside the building HDA instead of being brought in with Object Merge. That way the teahouse and the restaurant can use different asset settings at the same time. Each asset has its own CTRL null with width, height and depth, plus at least one extra control. The lattice itself comes from one small `lattice_panel` HDA that windows, doors and railings all share, so the grid pattern matches everywhere.
+Windows, doors and balconies are modelled in Houdini and built inside the building HDA instead of being brought in with Object Merge. That way the teahouse and the restaurant can use different asset settings at the same time. 
 
-Assets are placed on the floor boxes following the tutorial: points are spread along each wall using **Window gap** and **Margin**, the door takes a window's place when **Door at front** is on, and the assets are copied onto the points.
+- Each asset has its own CTRL null with width, height and depth, plus at least one extra control. The lattice itself comes from one small `lattice_panel` HDA that windows, doors and railings all share, so the grid pattern matches everywhere.
+- Assets are placed on the floor boxes following the tutorial: points are spread along each wall using **Window gap** and **Margin**, the door takes a window's place when **Door at front** is on, and the assets are copied onto the points.
 
 **Windows:** a timber frame around a paper-lattice panel. **Lattice Columns** and **Lattice Rows** set the grid, and there are wide and narrow variants. **Inset** pushes the window into the wall and **Sill height** sets how high it sits.
 
@@ -176,7 +177,7 @@ For the extra feature I added a roof, lanterns and materials, and dressed a smal
 - B2, Hefang Street railing and lattice-door detail: jensimon7, CC BY 2.0. https://www.flickr.com/photos/jennifersimon/1209662179/
 - B3, Wuzhen tall timber lattice facade: Evilbish, CC BY-SA 3.0. https://commons.wikimedia.org/wiki/File:WuzhenWaterway.jpg (used in https://zh.wikipedia.org/wiki/乌镇镇)
 
-**Environment (小镇环境)**
+**Environment**
 - E1, Zhouzhuang willows, stone bank and bridge: xiquinhosilva, CC BY 4.0. https://www.flickr.com/photos/7138083@N04/55460369856/
 - E2, Zhouzhuang arched bridge and boat: xiquinhosilva, CC BY 4.0. https://www.flickr.com/photos/7138083@N04/55460761390/
 - E3, *Along the River During the Qingming Festival* (detail), Zhang Zeduan, public domain. https://en.wikipedia.org/wiki/Along_the_River_During_the_Qingming_Festival
