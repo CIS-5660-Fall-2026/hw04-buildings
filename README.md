@@ -1,4 +1,5 @@
 # Procedural Buildings: Jiangnan Water Town
+Anna Dai [LinkedIn](www.linkedin.com/in/nanru-dai-8b33a9261) [Personal website](https://annanrudai.com/)
 
 ![Final render](render/jiangnan_aces.png)
 
