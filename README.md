@@ -8,7 +8,7 @@ A Houdini HDA that generates Jiangnan-style riverside buildings by stacking floo
 
 ## Demo Video
 
-**Building tool demo** (2× speed): [images/buildingtool_demo.mp4](images/buildingtool_demo.mp4)
+**Building tool demo** (3.5× speed): [images/buildingtool_demo.mp4](images/buildingtool_demo.mp4)
 
 *Editing the `building_tool` parameters live: floors, overhang, balconies, wall type, support mode, roof and look settings.*
 
