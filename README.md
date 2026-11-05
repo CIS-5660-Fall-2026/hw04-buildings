@@ -120,6 +120,11 @@ Assets are placed on the floor boxes following the tutorial: points are spread a
 
 In this style the "pillars" are the exposed timber frame. Following the tutorial's pillar setup, posts are copied along each floor's edges and corners, and a border beam runs around the top of every floor. **Pillar width**, **Border height**, **Border out** and **Border thickness** control them. The plaster or timber infill sits between the posts, which gives the dark-framed white walls of the reference houses.
 
+<table>
+<tr><td align="center"><img src="images/pillar.png" height="298"></td><td align="center"><img src="images/pillar_base.png" height="298"></td><td align="center"><img src="images/border.png" height="298"></td></tr>
+<tr><td align="center"><em>Corner post running the full floor height, with a bracket above</em></td><td align="center"><em>Base block at the foot of the post</em></td><td align="center"><em>Border beam around the top of the floor (selected in blue)</em></td></tr>
+</table>
+
 ### Supports (Part 4)
 
 Whenever a floor overhangs the one below it, supports are added under the overhang. **Support mode** has three options:
