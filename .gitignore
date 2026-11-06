@@ -5,3 +5,5 @@
 *.hipnc
 *.hiplc
 !building_final.hipnc
+
+render/montage/*.exr

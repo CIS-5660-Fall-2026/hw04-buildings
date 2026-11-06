@@ -21,41 +21,21 @@ https://github.com/user-attachments/assets/1651c82e-7e89-4612-9c99-cf9b7b979723
 
 *Flythrough of the finished water-town scene with both buildings, willows, stone bank and boat. [link](images/demo.mp4)*
 
-## Files / How to Open
+## Mood Board
 
-- Open `building_final.hipnc` (Houdini 22.0). All HDAs are **embedded in the hip file**, so no separate `.hda` files are needed: `anna0::building_tool`, `anna0::lattice_window`, `anna0::lattice_panel` and `anna0::set_mat`.
-- The scene is `/obj/scene`. The two buildings are `/obj/scene/teahouse` (Building A) and `/obj/scene/restaurant` (Building B), two instances of the same `building_tool` HDA with different parameters.
-- Render camera: `/obj/main_cam`. Lighting: `/obj/sky` (HDRI) and `/obj/sun`.
+<a href="images/moodboard.jpg"><img src="images/moodboard.jpg" width="60%"></a>
 
-## Features
+*Jiangnan water town references (Zhouzhuang, Wuzhen, Hangzhou). Labels match the reference list below.*
 
-The style stays fixed: white plaster, dark gray tiles, dark-brown timber, with red only on the lanterns. The roof type, lattice pattern and color palette are shared, so the two buildings always read as the same town. They differ mainly in numeric parameters (floor count, floor size, overhang, balconies) plus a couple of menu switches.
+## The `building_tool` HDA
+
+Everything is driven from one HDA. The top-level tabs (**Floors**, **Support**, **Roof**, **Look**) hold everything needed to switch between the two buildings, and the **Advanced** section holds the finer spacing and size controls.
 
 The building is always built facing +Z (the river side). Doors, overhangs and balconies all assume that, and the whole building is rotated at the object level to place it in the scene.
 
-### Building A / Building B
+![Parameter variations](render/montage/overview.png)
 
-<table>
-<tr><td align="center"><img src="images/teahouse.png" height="318"></td><td align="center"><img src="images/restaurant.png" height="318"></td></tr>
-<tr><td align="center"><em>Building A: two-floor riverside teahouse on stilts</em></td><td align="center"><em>Building B: three-floor restaurant</em></td></tr>
-</table>
-
-*Both buildings come from the same `building_tool` HDA.*
-
-| Parameter | Building A: Teahouse | Building B: Restaurant |
-|---|---|---|
-| Floors | 2 | 3 |
-| Floor size (X × Y × Z) | 7 × 3.3 × 6 | 10 × 3.9 / 3.7 × 8 |
-| Overhang per floor | 0, 0.6 | 0, 0.76, 0.79 |
-| Balconies | Full length on floor 2 | Full length on floor 2, front section on floor 3 |
-| Support mode | Auto (ends up as stilts over the water) | Brackets |
-| Railing style | 美人靠 leaning seat | Straight balusters |
-
-The teahouse is small and low, sits right on the water and leans out over it on stilts, like the Wuzhen stilt houses (A2). The restaurant is wider and taller, with stacked balconies held up by timber brackets, like the Zhouzhuang restaurants (B1, B3).
-
-### The `building_tool` HDA
-
-Everything is driven from one HDA. The top-level tabs (**Floors**, **Support**, **Roof**, **Look**) hold everything needed to switch between the two buildings, and the **Advanced** section holds the finer spacing and size controls.
+*One building, six parameter changes: floor count, overhang and balconies, stilts, roof shape, and the Look palette.*
 
 <a href="images/building_control.png"><img src="images/building_control.png" width="60%"></a>
 
@@ -76,7 +56,31 @@ Everything is driven from one HDA. The top-level tabs (**Floors**, **Support**, 
 
 *Inside the `building_tool` HDA.*
 
-### Box Stacking (Part 1)
+### Building A / Building B
+
+The style stays fixed: white plaster, dark gray tiles, dark-brown timber, with red only on the lanterns. The roof type, lattice pattern and color palette are shared, so the two buildings always read as the same town. They differ mainly in numeric parameters (floor count, floor size, overhang, balconies) plus a couple of menu switches.
+
+<table>
+<tr><td align="center"><img src="images/teahouse.png" height="318"></td><td align="center"><img src="images/restaurant.png" height="318"></td></tr>
+<tr><td align="center"><em>Building A: two-floor riverside teahouse on stilts</em></td><td align="center"><em>Building B: three-floor restaurant</em></td></tr>
+</table>
+
+*Both buildings come from the same `building_tool` HDA.*
+
+| Parameter | Building A: Teahouse | Building B: Restaurant |
+|---|---|---|
+| Floors | 2 | 3 |
+| Floor size (X × Y × Z) | 7 × 3.3 × 6 | 10 × 3.9 / 3.7 × 8 |
+| Overhang per floor | 0, 0.6 | 0, 0.76, 0.79 |
+| Balconies | Full length on floor 2 | Full length on floor 2, front section on floor 3 |
+| Support mode | Auto (ends up as stilts over the water) | Brackets |
+| Railing style | 美人靠 leaning seat | Straight balusters |
+
+The teahouse is small and low, sits right on the water and leans out over it on stilts, like the Wuzhen stilt houses (A2). The restaurant is wider and taller, with stacked balconies held up by timber brackets, like the Zhouzhuang restaurants (B1, B3).
+
+### Features
+
+#### Box Stacking
 
 The loop structure follows the tutorial: the building is a stack of boxes driven by a **Floors** multiparm (`floor_loop` + `stack_on_top`). Each floor box is placed on top of the one below it, and every floor has its own controls on the **Floors** tab:
 
@@ -89,7 +93,7 @@ The loop structure follows the tutorial: the building is a stack of boxes driven
 
 Each floor's primitives carry an `i@floor` attribute, and a `floor_iter_meta` step tells every feature which floor it is on. That per-floor logic is what lets the roof grow only on the top floor, the door open only on the ground floor, and the lanterns know how far the floor above overhangs. It is also what makes the two buildings possible: the teahouse overhangs from its second floor, while the restaurant overhangs on both upper floors and has a different balcony on each.
 
-### Windows, Doors, Balconies (Part 2)
+#### Windows, Doors, Balconies
 
 Windows, doors and balconies are modeled in Houdini and built inside the building HDA instead of being brought in with Object Merge. That way the teahouse and the restaurant can use different asset settings at the same time. 
 
@@ -127,7 +131,7 @@ Windows, doors and balconies are modeled in Houdini and built inside the buildin
 <tr><td align="center"><em>Window CTRL</em></td><td align="center"><em>Door CTRL</em></td><td align="center"><em>Balcony CTRL</em></td></tr>
 </table>
 
-### Pillars and Borders (Part 3)
+#### Pillars and Borders
 
 In this style the "pillars" are the exposed timber frame. Posts are copied along each floor's edges and corners, and a border beam runs around the top of every floor. **Pillar width**, **Border height**, **Border out** and **Border thickness** control them. The plaster or timber infill sits between the posts, which gives the dark-framed white walls of the reference houses.
 
@@ -136,7 +140,7 @@ In this style the "pillars" are the exposed timber frame. Posts are copied along
 <tr><td align="center"><em>Corner post running the full floor height, with a bracket above</em></td><td align="center"><em>Base block at the foot of the post</em></td><td align="center"><em>Border beam around the top of the floor (selected in blue)</em></td></tr>
 </table>
 
-### Supports (Part 4)
+#### Supports
 
 Whenever a floor overhangs the one below it, supports are added under the overhang. **Support mode** has three options:
 
@@ -151,14 +155,11 @@ Whenever a floor overhangs the one below it, supports are added under the overha
 <tr><td align="center"><em>Brackets under the overhang</em></td><td align="center"><em>Stilts down to the water level</em></td></tr>
 </table>
 
-### Roof and Scene (Part 5)
-
-For the extra feature I added a roof, lanterns and materials, and dressed a small canal scene.
+#### Roof, Lanterns and Materials
 
 - **Roof:** a 悬山 (overhanging gable) roof, the most common roof on Jiangnan houses. **Eave depth** and **Gable overhang** set how far it reaches past the walls, **Roof height** and **Roof sag** shape the slope, and **Eave curl** lifts the ends of the eaves. Rows of tiles are laid along the slope with **Tile spacing**.
 - **Lanterns:** red lanterns hang under the eaves and balconies, spaced by **Lantern spacing** with an adjustable **Lantern radius**. They are the only red in the palette.
 - **Materials:** a `set_mat` helper HDA tags every part (plaster, timber, tile, ridge, stone, lantern, tassel, paper, wood) so materials can be assigned in one place. The plaster, timber and tile colors are on the **Look** tab.
-- **Scene:** water, a stone quay with steps down to the canal, three willows and a covered boat, lit by an overcast HDRI to keep the soft, gray-blue mood of the references.
 
 ![Roof](images/roof.png)
 
@@ -168,13 +169,15 @@ For the extra feature I added a roof, lanterns and materials, and dressed a smal
 
 *Red lantern hung under the eaves.*
 
-## Project Planning
+## Scene
 
-### Mood Board
+The two buildings are placed in a small canal scene: water, a stone quay with steps down to the canal, three willows and a covered boat, lit by an overcast HDRI to keep the soft, gray-blue mood of the references.
 
-<a href="images/moodboard.jpg"><img src="images/moodboard.jpg" width="60%"></a>
+## Files / How to Open
 
-*Jiangnan water town references (Zhouzhuang, Wuzhen, Hangzhou). Labels match the reference list below.*
+- Open `building_final.hipnc` (Houdini 22.0). All HDAs are **embedded in the hip file**, so no separate `.hda` files are needed: `anna0::building_tool`, `anna0::lattice_window`, `anna0::lattice_panel` and `anna0::set_mat`.
+- The scene is `/obj/scene`. The two buildings are `/obj/scene/teahouse` (Building A) and `/obj/scene/restaurant` (Building B), two instances of the same `building_tool` HDA with different parameters.
+- Render camera: `/obj/main_cam`. Lighting: `/obj/sky` (HDRI) and `/obj/sun`.
 
 ## References
 
