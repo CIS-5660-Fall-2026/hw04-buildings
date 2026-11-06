@@ -1,0 +1,9 @@
+/backup
+
+# Houdini: only submit the final scene
+*.hip
+*.hipnc
+*.hiplc
+!building_final.hipnc
+
+render/montage/*.exr
