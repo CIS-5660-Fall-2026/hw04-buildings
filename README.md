@@ -1,5 +1,5 @@
 # Procedural Buildings: Jiangnan Water Town
-Anna Dai [LinkedIn](www.linkedin.com/in/nanru-dai-8b33a9261) [Personal website](https://annanrudai.com/)
+Anna Dai [LinkedIn](https://www.linkedin.com/in/nanru-dai-8b33a9261) [Personal website](https://annanrudai.com/)
 
 ![Final render](render/jiangnan_aces.png)
 
@@ -29,7 +29,7 @@ https://github.com/user-attachments/assets/1651c82e-7e89-4612-9c99-cf9b7b979723
 
 ## Features
 
-The style stays fixed: white plaster, dark grey tiles, dark-brown timber, with red only on the lanterns. The roof type, lattice pattern and colour palette are shared, so the two buildings always read as the same town. They differ mainly in numeric parameters (floor count, floor size, overhang, balconies) plus a couple of menu switches.
+The style stays fixed: white plaster, dark gray tiles, dark-brown timber, with red only on the lanterns. The roof type, lattice pattern and color palette are shared, so the two buildings always read as the same town. They differ mainly in numeric parameters (floor count, floor size, overhang, balconies) plus a couple of menu switches.
 
 The building is always built facing +Z (the river side). Doors, overhangs and balconies all assume that, and the whole building is rotated at the object level to place it in the scene.
 
@@ -78,7 +78,7 @@ Everything is driven from one HDA. The top-level tabs (**Floors**, **Support**, 
 
 ### Box Stacking (Part 1)
 
-Following the tutorial, the building is a stack of boxes driven by a **Floors** multiparm. Each floor box is placed on top of the one below it, and every floor has its own controls on the **Floors** tab:
+The loop structure follows the tutorial: the building is a stack of boxes driven by a **Floors** multiparm (`floor_loop` + `stack_on_top`). Each floor box is placed on top of the one below it, and every floor has its own controls on the **Floors** tab:
 
 - **Floor size:** width, height and depth of the floor.
 - **Window ID:** wide or narrow lattice window.
@@ -87,14 +87,19 @@ Following the tutorial, the building is a stack of boxes driven by a **Floors** 
 - **Balcony type:** none, front section or full length, plus **Balcony depth**.
 - **Wall type:** plaster or timber infill.
 
-Each floor's primitives carry an `i@floor` attribute, so later steps (windows, borders, supports, materials) know which floor they belong to.
+Each floor's primitives carry an `i@floor` attribute, and a `floor_iter_meta` step tells every feature which floor it is on. That per-floor logic is what lets the roof grow only on the top floor, the door open only on the ground floor, and the lanterns know how far the floor above overhangs. It is also what makes the two buildings possible: the teahouse overhangs from its second floor, while the restaurant overhangs on both upper floors and has a different balcony on each.
 
 ### Windows, Doors, Balconies (Part 2)
 
-Windows, doors and balconies are modelled in Houdini and built inside the building HDA instead of being brought in with Object Merge. That way the teahouse and the restaurant can use different asset settings at the same time. 
+Windows, doors and balconies are modeled in Houdini and built inside the building HDA instead of being brought in with Object Merge. That way the teahouse and the restaurant can use different asset settings at the same time. 
 
 - Each asset has its own CTRL null with width, height and depth, plus at least one extra control. The lattice itself comes from one small `lattice_panel` HDA that windows, doors and railings all share, so the grid pattern matches everywhere.
-- Assets are placed on the floor boxes following the tutorial: points are spread along each wall using **Window gap** and **Margin**, the door takes a window's place when **Door at front** is on, and the assets are copied onto the points.
+- Placement follows the tutorial's idea of computing points on each wall and copying the assets onto them, but the layout itself is my own `grid_layout` VEX wrangle:
+  - The number and position of windows are calculated from the wall width, **Margin** and **Window gap**, not scattered. Widen a wall and the window count updates, spacing stays even and the door stays centered.
+  - Window and door sizes are read from the assets themselves (`asset_dim`), so changing a window's width re-flows the layout without touching any placement parameters.
+  - Pillar positions are calculated in the same code, so pillars always land between windows and never overlap them.
+  - All four walls go through one piece of logic using the wall's normal (`prim_normal`), instead of separate node chains for the front, back and sides.
+  - The trade-off: the code is harder to read than a node network, and changing a layout rule means editing VEX.
 
 **Windows:** a timber frame around a paper-lattice panel. **Lattice Columns** and **Lattice Rows** set the grid, and there are wide and narrow variants. **Inset** pushes the window into the wall and **Sill height** sets how high it sits.
 
@@ -114,7 +119,7 @@ Windows, doors and balconies are modelled in Houdini and built inside the buildi
 
 <table>
 <tr><td align="center"><img src="images/balcony.png" height="243"></td><td align="center"><img src="images/railingstyle0.png" height="243"></td><td align="center"><img src="images/railingstyle1.png" height="243"></td></tr>
-<tr><td align="center"><em>Full wrap-around balcony</em></td><td align="center"><em>美人靠 Meirenkao leaning seat. The seat is recoloured lighter here so it is easy to see; in the building it uses the timber colour.</em></td><td align="center"><em>Straight balusters</em></td></tr>
+<tr><td align="center"><em>Full wrap-around balcony</em></td><td align="center"><em>美人靠 Meirenkao leaning seat. The seat is recolored lighter here so it is easy to see; in the building it uses the timber color.</em></td><td align="center"><em>Straight balusters</em></td></tr>
 </table>
 
 <table>
@@ -124,7 +129,7 @@ Windows, doors and balconies are modelled in Houdini and built inside the buildi
 
 ### Pillars and Borders (Part 3)
 
-In this style the "pillars" are the exposed timber frame. Following the tutorial's pillar setup, posts are copied along each floor's edges and corners, and a border beam runs around the top of every floor. **Pillar width**, **Border height**, **Border out** and **Border thickness** control them. The plaster or timber infill sits between the posts, which gives the dark-framed white walls of the reference houses.
+In this style the "pillars" are the exposed timber frame. Posts are copied along each floor's edges and corners, and a border beam runs around the top of every floor. **Pillar width**, **Border height**, **Border out** and **Border thickness** control them. The plaster or timber infill sits between the posts, which gives the dark-framed white walls of the reference houses.
 
 <table>
 <tr><td align="center"><img src="images/pillar.png" height="298"></td><td align="center"><img src="images/pillar_base.png" height="298"></td><td align="center"><img src="images/border.png" height="298"></td></tr>
@@ -152,8 +157,8 @@ For the extra feature I added a roof, lanterns and materials, and dressed a smal
 
 - **Roof:** a 悬山 (overhanging gable) roof, the most common roof on Jiangnan houses. **Eave depth** and **Gable overhang** set how far it reaches past the walls, **Roof height** and **Roof sag** shape the slope, and **Eave curl** lifts the ends of the eaves. Rows of tiles are laid along the slope with **Tile spacing**.
 - **Lanterns:** red lanterns hang under the eaves and balconies, spaced by **Lantern spacing** with an adjustable **Lantern radius**. They are the only red in the palette.
-- **Materials:** a `set_mat` helper HDA tags every part (plaster, timber, tile, ridge, stone, lantern, tassel, paper, wood) so materials can be assigned in one place. The plaster, timber and tile colours are on the **Look** tab.
-- **Scene:** water, a stone quay with steps down to the canal, three willows and a covered boat, lit by an overcast HDRI to keep the soft, grey-blue mood of the references.
+- **Materials:** a `set_mat` helper HDA tags every part (plaster, timber, tile, ridge, stone, lantern, tassel, paper, wood) so materials can be assigned in one place. The plaster, timber and tile colors are on the **Look** tab.
+- **Scene:** water, a stone quay with steps down to the canal, three willows and a covered boat, lit by an overcast HDRI to keep the soft, gray-blue mood of the references.
 
 ![Roof](images/roof.png)
 
@@ -192,4 +197,10 @@ For the extra feature I added a roof, lanterns and materials, and dressed a smal
 - **Sky HDRI:** "[Kloofendal Overcast (Pure Sky)](https://polyhaven.com/a/kloofendal_overcast_puresky)" by Greg Zaal, [Poly Haven](https://polyhaven.com), CC0.
 
 **Tutorial**
-- Based on [Simon Houdini's procedural building tutorial](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini).
+- The setup follows the structure of [Simon Houdini's procedural building tutorial](https://www.youtube.com/watch?v=uIe97023sDk&t=979s&ab_channel=SimonHoudini): the floor stacking loop, point-based asset placement, pillars and borders, and overhang supports. Beyond the tutorial:
+  - VEX grid layout for windows, doors and pillars
+  - Jiangnan-style window, door and balcony models with a shared lattice HDA, and the 美人靠 railing
+  - Three support modes (auto / stilts / brackets) with a water level
+  - Overhanging gable roof (悬山) and lanterns
+  - Material tagging (`set_mat`) with an exposed color palette
+  - The canal scene
